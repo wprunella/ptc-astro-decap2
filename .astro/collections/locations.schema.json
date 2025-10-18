@@ -1,0 +1,56 @@
+{
+  "$ref": "#/definitions/locations",
+  "definitions": {
+    "locations": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "major_city",
+            "suburb"
+          ]
+        },
+        "parent_slug": {
+          "type": "string"
+        },
+        "hero_image": {
+          "type": "string"
+        },
+        "zip_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "meta_title": {
+          "type": "string"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "state",
+        "slug",
+        "type",
+        "hero_image"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

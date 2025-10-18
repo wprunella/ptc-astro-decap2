@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import HeaderNav from '../../components/HeaderNav.astro';
+import SEO from '../../components/SEO.astro';
+
+const blogPosts = await getCollection('blog');
+const sortedPosts = blogPosts.sort((a, b) => new Date(b.data.publish_date).getTime() - new Date(a.data.publish_date).getTime());
+---
+
+<Layout title="Fitness Blog | Personal Trainer City">
+  <HeaderNav />
+  <SEO 
+    title="Fitness Blog | Expert Tips & Training Advice"
+    description="Read the latest fitness tips, training advice, and health insights from certified personal trainers at Personal Trainer City."
+    canonical="/blog/"
+  />
+
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-center mb-12">Fitness Blog</h1>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPosts.map((post) => (
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div class="h-48 bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
+                <h

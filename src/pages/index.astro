@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import SEO from '../components/SEO.astro';
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
+const locations = await getCollection('locations');
+
+const majorCities = locations.filter(loc => loc.data.type === 'major_city');
+const majorServices = services.slice(0, 6);
+---
+
+<Layout title="Personal Trainer City | Find Your Perfect Fitness Coach">
+  <HeaderNav />
+  <SEO 
+    title="Personal Trainer City | Find Certified Fitness Coaches Near You"
+    description="Connect with certified personal trainers in your area. Custom workout plans, nutrition coaching, and fitness programs for all levels."
+  />
+
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">Find Your Perfect Personal Trainer</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Connect with certified fitness professionals in your city. Transform your body and lifestyle with personalized coaching.
+        </p>
+        <a href="#services" class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-block">
+          Explore Services
+        </a>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {majorServices.map((service) => (
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="h-48 bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
+                <h3 class="text-2xl font-bold text-white text-center px-4">{service.data.name}</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-600 mb-4">{service.data.tagline}</p>
+                <a 
+                  href={`/services/${service.slug}`}
+                  class="text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+                >
+                  Learn More →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <a href="/services" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+            View All Services →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Find Trainers in Your City</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {majorCities.map((location) => (
+            <a 
+              href={`/locations/${location.slug}`}
+              class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow border border-gray-100"
+            >
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">{location.data.city}</h3>
+              <p class="text-gray-600">{location.data.state}</p>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <a href="/locations" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+            View All Locations →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
