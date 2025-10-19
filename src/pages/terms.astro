@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import SEO from '../components/SEO.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Service | Personal Trainer City">
+  <HeaderNav />
+  <SEO 
+    title="Terms of Service | Personal Trainer City"
+    description="Read the terms and conditions governing your use of Personal Trainer City services and platform."
+    canonical="/terms/"
+  />
+
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-8">Terms of Service</h1>
+        
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-600 mb-6">Last updated: {new Date().toLocaleDateString()}</p>
+          
+          <h2 class="text-2xl font-semibold mt-8 mb-4">Acceptance of Terms</h2>
+          <p class="mb-6">By accessing and using Personal Trainer City services, you accept and agree to be bound by these Terms of Service.</p>
+          
+          <h2 class="text-2xl font-semibold mt-8 mb-4">Service Description</h2>
+          <p class="mb-6">Personal Trainer City connects users with certified personal trainers and fitness professionals. We provide a platform for discovery, booking, and communication between clients and trainers.</p>
+          
+          <h2 class="text-2xl font-semibold mt-8 mb-4">User Responsibilities</h2>
+          <p class="mb-4">As a user, you agree to:</p>
+          <ul class="list-disc pl-6 mb-6">
+            <li>Provide accurate and complete information</li>
+            <li>Maintain the security of your account</li>
+            <li>Use the service only for lawful purposes</li>
+            <li>Respect trainer availability and cancellation policies</li>
+          </ul>
+          
+          <h2 class="text-2xl font-semibold mt-8 mb-4">Trainer Relationships</h2>
+          <p class="mb-6">Personal Trainer City acts as a platform to connect users with trainers. The service relationship is directly between you and the trainer. We are not responsible for trainer conduct or service quality.</p>
+          
+          <h2 class="text-2xl font-semibold mt-8 mb-4">Payment and Cancellation</h2>
+          <p class="mb-6">All payments are processed through our secure platform. Cancellation policies vary by trainer and are clearly stated during the booking process.</p>
+          
+          <h2 class="text-2xl font-semibold mt-8 mb-4">Contact Information</h2>
+          <p class="mb-6">For questions about these terms, contact us at legal@personaltrainercity.com.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
