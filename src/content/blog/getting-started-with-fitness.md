@@ -1,10 +1,12 @@
 ---
 title: "Getting Started with Fitness: A Beginner's Guide"
 publish_date: 2024-01-15
-author: "Sarah Johnson"
-featured_image: "/images/blog/getting-started.jpg"
-meta_title: "Beginner's Guide to Starting Your Fitness Journey | Personal Trainer City"
-meta_description: "Learn how to start your fitness journey with this comprehensive beginner's guide. Tips on setting goals, creating routines, and staying motivated from certified personal trainers."
+author: Sarah Johnson
+featured_image: src/assets/images/gettyimages-184282094-58e1511b3df78c5162a84406.jpg
+meta_title: Beginner's Guide to Starting Your Fitness Journey | Personal Trainer City
+meta_description: Learn how to start your fitness journey with this
+  comprehensive beginner's guide. Tips on setting goals, creating routines, and
+  staying motivated from certified personal trainers.
 ---
 
 # Getting Started with Fitness: A Beginner's Guide
