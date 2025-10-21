@@ -10,9 +10,6 @@
         "state": {
           "type": "string"
         },
-        "slug": {
-          "type": "string"
-        },
         "type": {
           "type": "string",
           "enum": [
@@ -45,7 +42,6 @@
       "required": [
         "city",
         "state",
-        "slug",
         "type",
         "hero_image"
       ],
