@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import HeaderNav from '../../components/HeaderNav.astro';
+import SEO from '../../components/SEO.astro';
+import Footer from '../../components/Footer.astro';
+import FeaturedImage from '../../components/FeaturedImage.astro';
+
+export async function getStaticPaths() {
+    const blogPosts = await getCollection('blog');
+    return blogPosts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const formattedDate = new Date(post.data.publish_date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+---
+
+<Layout title={post.data.meta_title || post.data.title}>
+  <HeaderNav />
+  <SEO 
+    title={post.data.meta_title || post.data.title}
+    description={post.data.meta_description}
+    canonical={`/blog/${post.slug}/`}
+  />
+
+  <main class="min-h-screen bg-gray-50">
+    <article class="container mx-auto px-4 py-12">
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+        
+        <FeaturedImage 
+          src={post.data.featured_image} 
+          alt={post.data.title}
+          className="w-full h-80 object-cover"
+        />
+
+        <div class="p-8 md:p-12">
+          <header class="mb-8 border-b pb-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">{post.data.title}</h1>
+            <p class="text-lg text-primary-600">By {post.data.author} • <time datetime={post.data.publish_date.toISOString()}>{formattedDate}</time></p>
+          </header>
+
+          <div class="prose prose-xl max-w-none text-gray-700">
+            <!-- Renders the Markdown body content -->
+            <div>{post.body}</div>
+          </div>
+          
+          <div class="mt-10 pt-6 border-t">
+            <a href="/blog/" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to all posts
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</Layout>
