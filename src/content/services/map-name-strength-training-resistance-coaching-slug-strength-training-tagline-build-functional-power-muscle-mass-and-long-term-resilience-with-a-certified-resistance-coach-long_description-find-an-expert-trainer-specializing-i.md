@@ -7,6 +7,10 @@ long_description: Find an expert trainer specializing in safe, effective
   strength training. Our personalized programs focus on proper form, progressive
   overload, and periodization for superior results in any location.
 hero_image: src/assets/images/gettyimages-184282094-58e1511b3df78c5162a84406.jpg
+meta_title: Personalized Strength Training Programs | Build Muscle & Power
+meta_description: Find an expert trainer specializing in safe, effective
+  strength training. Our personalized programs focus on proper form, progressive
+  overload, and periodization for superior results in any location.
 ---
 # Personalized Strength Training: Building Strength That Lasts
 
