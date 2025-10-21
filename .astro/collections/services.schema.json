@@ -7,13 +7,7 @@
         "name": {
           "type": "string"
         },
-        "slug": {
-          "type": "string"
-        },
         "tagline": {
-          "type": "string"
-        },
-        "long_description": {
           "type": "string"
         },
         "hero_image": {
@@ -31,9 +25,7 @@
       },
       "required": [
         "name",
-        "slug",
         "tagline",
-        "long_description",
         "hero_image"
       ],
       "additionalProperties": false
