@@ -6,12 +6,14 @@ import FeaturedImage from '../../components/FeaturedImage.astro';
 import LeadWebformCTA from '../../components/LeadWebformCTA.astro';
 import SEO from '../../components/SEO.astro';
 
+// 1. DYNAMIC ROUTING: Generates all service/location combinations (e.g., /strength-training/washington-dc/)
 export async function getStaticPaths() {
   const services = await getCollection('services');
   const locations = await getCollection('locations');
   
   const paths = [];
   
+  // Create a cartesian product of Services x Locations
   for (const service of services) {
     for (const location of locations) {
       paths.push({
@@ -32,12 +34,11 @@ export async function getStaticPaths() {
 
 const { service, location } = Astro.props;
 
-// FIX 1: Render the Service body content
+// FIX: Render the Markdown bodies into reusable Astro components
 const { Content: ServiceContent } = await service.render(); 
-
-// FIX 2: Render the Location body content
 const { Content: LocationContent } = await location.render(); 
 
+// SEO & H1 Mapping Logic
 const pageTitle = `${service.data.name} in ${location.data.city}, ${location.data.state}`;
 const pageDescription = `Find certified ${service.data.name.toLowerCase()} personal trainers in ${location.data.city}, ${location.data.state}. ${service.data.tagline}`;
 ---
@@ -47,13 +48,16 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
   <SEO 
     title={pageTitle}
     description={pageDescription}
+    // Canonical URL enforces the /service/location structure
     canonical={`/${service.slug}/${location.slug}/`}
   />
 
   <main class="min-h-screen bg-gray-50">
     <div class="container mx-auto px-4 py-8">
+      <!-- Hero Section -->
       <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
         <div class="text-center mb-8">
+          {/* H1 Mapping: Targets the high-intent query */}
           <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">{service.data.tagline}</p>
         </div>
@@ -64,26 +68,35 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
           className="mb-8"
         />
         
+        <!-- Content Fusion: Merging Service Expertise and Local Relevance -->
         <div class="max-w-none"> 
           <div class="grid md:grid-cols-2 gap-8">
+            
+            {/* COLUMN 1: Service Authority (Long Description) */}
             <div>
               <h2 class="text-2xl font-bold mb-4">About Our {service.data.name} Program</h2>
+              {/* FIX: Apply prose directly to the content for correct formatting */}
               <div class="prose prose-lg">
                 <ServiceContent />
               </div>
             </div>
+
+            {/* COLUMN 2: Location Relevance (AI-Generated Hyper-Local Text) */}
             <div>
               <h2 class="text-2xl font-bold mb-4">Training in {location.data.city}</h2>
+              {/* FIX: Apply prose directly to the content for correct formatting */}
               <div class="prose prose-lg">
                 <LocationContent />
               </div>
             </div>
+            
           </div>
         </div>
       </div>
       
+      <!-- Conversion Trigger (The P.P.I. Webform) -->
       <LeadWebformCTA pageSlug={`${service.slug}/${location.slug}`} />
     </div>
   </main>
 </Layout>
-```eof
+
