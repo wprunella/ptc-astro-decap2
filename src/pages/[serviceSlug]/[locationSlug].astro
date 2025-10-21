@@ -31,6 +31,13 @@ export async function getStaticPaths() {
 }
 
 const { service, location } = Astro.props;
+
+// FIX 1: Render the Service body content
+const { Content: ServiceContent } = await service.render(); 
+
+// FIX 2: Render the Location body content
+const { Content: LocationContent } = await location.render(); 
+
 const pageTitle = `${service.data.name} in ${location.data.city}, ${location.data.state}`;
 const pageDescription = `Find certified ${service.data.name.toLowerCase()} personal trainers in ${location.data.city}, ${location.data.state}. ${service.data.tagline}`;
 ---
@@ -62,11 +69,13 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <h2 class="text-2xl font-bold mb-4">About Our {service.data.name} Program</h2>
-              <div>{service.body}</div>
+              <!-- FIX APPLIED: Render the ServiceContent component -->
+              <ServiceContent />
             </div>
             <div>
               <h2 class="text-2xl font-bold mb-4">Training in {location.data.city}</h2>
-              <div>{location.body}</div>
+              <!-- FIX APPLIED: Render the LocationContent component -->
+              <LocationContent />
             </div>
           </div>
         </div>
