@@ -19,9 +19,6 @@ const services = defineCollection({
   schema: z.object({
     name: z.string(),
     tagline: z.string(),
-    // 🎯 FIX: Removed long_description and slug.
-    // The main body content is now correctly accessed via 'service.body'.
-    // The slug is correctly accessed via 'service.slug'.
     hero_image: z.string(),
     meta_title: z.string().optional(),
     meta_description: z.string().optional(),

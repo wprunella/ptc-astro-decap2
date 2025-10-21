@@ -1,15 +1,15 @@
 ---
-title: "The Ultimate Guide to Fat Loss and Strength Training: Building Muscle
-  While Burning Fat"
-slug: fat-loss-using-strength-training
-publish_date: 2025-10-21T13:57:00.000-04:00
-author: warren
-featured_image: /images/oriental-bamboo-forest-daylight.jpg
-meta_title: Fat Loss & Strength Training Guide | Build Muscle, Burn Fat Effectively
-meta_description: Learn how to combine strength training with fat loss
-  strategies to build muscle while burning fat. Science-backed methods for
-  optimal body composition.
+title: "The Ultimate Guide to Fat Loss and Strength Training: Building Muscle While Burning Fat"
+slug: "ultimate-guide-fat-loss-strength-training"
+publish_date: 2024-01-15T00:00:00.000Z
+author: "Alex Johnson"
+featured_image: "/images/oriental-bamboo-forest-daylight.jpg"
+meta_title: "Fat Loss & Strength Training Guide | Build Muscle, Burn Fat Effectively"
+meta_description: "Learn how to combine strength training with fat loss strategies to build muscle while burning fat. Science-backed methods for optimal body composition."
 ---
+
+# The Ultimate Guide to Fat Loss and Strength Training: Building Muscle While Burning Fat
+
 For decades, people have been told they need to choose between building muscle and losing fat. But what if you could do both simultaneously? The truth is, with the right approach to strength training and nutrition, you can transform your body composition in ways you never thought possible.
 
 ## Why Strength Training is Essential for Fat Loss

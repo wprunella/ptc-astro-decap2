@@ -15,8 +15,17 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-// FIX: Call render() to get the Content component
-const { Content } = await post.render(); 
+
+// FIX: Add error handling for post.render()
+let Content;
+try {
+    const rendered = await post.render();
+    Content = rendered.Content;
+} catch (error) {
+    console.error(`Error rendering post ${post.slug}:`, error);
+    // Fallback content
+    Content = null;
+}
 
 const formattedDate = new Date(post.data.publish_date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -50,8 +59,13 @@ const formattedDate = new Date(post.data.publish_date).toLocaleDateString('en-US
           </header>
 
           <div class="prose prose-xl max-w-none text-gray-700">
-            <!-- FIX APPLIED: Render the Content component -->
-            <Content /> 
+            <!-- FIX: Conditional rendering with fallback -->
+            {Content ? <Content /> : (
+              <div class="text-center py-8">
+                <p class="text-gray-500">Content could not be loaded.</p>
+                <p class="text-sm text-gray-400 mt-2">Please check the blog post formatting.</p>
+              </div>
+            )}
           </div>
           
           <div class="mt-10 pt-6 border-t">
