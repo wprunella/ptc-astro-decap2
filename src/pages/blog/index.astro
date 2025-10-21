@@ -40,9 +40,15 @@ const sortedPosts = blogPosts.sort((a, b) => new Date(b.data.publish_date).getTi
             </article>
           ))}
         </div>
+        
+        {/* Fallback for when no posts exist yet */}
+        {sortedPosts.length === 0 && (
+          <p class="text-center text-gray-500 mt-10">No blog posts found. Add content to the `blog` collection!</p>
+        )}
       </div>
     </div>
   </main>
   
   <Footer />
 </Layout>
+
