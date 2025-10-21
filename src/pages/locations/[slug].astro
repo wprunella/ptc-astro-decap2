@@ -7,6 +7,94 @@ import LeadWebformCTA from '../../components/LeadWebformCTA.astro';
 import SEO from '../../components/SEO.astro';
 
 export async function getStaticPaths() {
+  const services = await getCollection('services');
+  const locations = await getCollection('locations');
+  
+  const paths = [];
+  
+  for (const service of services) {
+    for (const location of locations) {
+      paths.push({
+        params: {
+          serviceSlug: service.slug,
+          locationSlug: location.slug
+        },
+        props: {
+          service,
+          location
+        }
+      });
+    }
+  }
+  
+  return paths;
+}
+
+const { service, location } = Astro.props;
+
+// FIX 1: Render the Service body content
+const { Content: ServiceContent } = await service.render(); 
+
+// FIX 2: Render the Location body content
+const { Content: LocationContent } = await location.render(); 
+
+const pageTitle = `${service.data.name} in ${location.data.city}, ${location.data.state}`;
+const pageDescription = `Find certified ${service.data.name.toLowerCase()} personal trainers in ${location.data.city}, ${location.data.state}. ${service.data.tagline}`;
+---
+
+<Layout title={pageTitle}>
+  <HeaderNav />
+  <SEO 
+    title={pageTitle}
+    description={pageDescription}
+    canonical={`/${service.slug}/${location.slug}/`}
+  />
+
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Hero Section -->
+      <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">{service.data.tagline}</p>
+        </div>
+        
+        <FeaturedImage 
+          src={service.data.hero_image} 
+          alt={`${service.data.name} in ${location.data.city}`}
+          className="mb-8"
+        />
+        
+        <div class="prose prose-lg max-w-none">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h2 class="text-2xl font-bold mb-4">About Our {service.data.name} Program</h2>
+              <!-- FIX APPLIED: Render the ServiceContent component -->
+              <ServiceContent />
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold mb-4">Training in {location.data.city}</h2>
+              <!-- FIX APPLIED: Render the LocationContent component -->
+              <LocationContent />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Lead Form -->
+      <LeadWebformCTA pageSlug={`${service.slug}/${location.slug}`} />
+    </div>
+  </main>
+</Layout>
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import HeaderNav from '../../components/HeaderNav.astro';
+import FeaturedImage from '../../components/FeaturedImage.astro';
+import LeadWebformCTA from '../../components/LeadWebformCTA.astro';
+import SEO from '../../components/SEO.astro';
+
+export async function getStaticPaths() {
   const locations = await getCollection('locations');
   return locations.map((location) => ({
     params: { slug: location.slug },
@@ -17,6 +105,9 @@ export async function getStaticPaths() {
 const { location } = Astro.props;
 const services = await getCollection('services');
 const allLocations = await getCollection('locations');
+
+// FIX 1: Render the Location body content
+const { Content: LocationContent } = await location.render();
 
 const majorServices = services.slice(0, 6);
 const associatedSuburbs = location.data.type === 'major_city' 
@@ -57,7 +148,8 @@ const parentCity = location.data.type === 'suburb'
         />
         
         <div class="prose prose-lg max-w-none mb-8">
-          <div>{location.body}</div>
+          <!-- FIX APPLIED: Render the LocationContent component -->
+          <LocationContent />
         </div>
         
         <!-- Services Available -->
