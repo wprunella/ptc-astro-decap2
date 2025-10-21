@@ -68,29 +68,30 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
           className="mb-8"
         />
         
-        <!-- Content Fusion: Merging Service Expertise and Local Relevance -->
+        <!-- Content Fusion: Merging Service Expertise and Local Relevance (NOW STACKED) -->
         <div class="max-w-none"> 
-          <div class="grid md:grid-cols-2 gap-8">
-            
-            {/* COLUMN 1: Service Authority (Long Description) */}
-            <div>
-              <h2 class="text-2xl font-bold mb-4">About Our {service.data.name} Program</h2>
-              {/* FIX: Apply prose directly to the content for correct formatting */}
-              <div class="prose prose-lg">
-                <ServiceContent />
-              </div>
+          
+          {/* ROW 1: Service Authority (Long Description) */}
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">About Our {service.data.name} Program</h2>
+            {/* FIX: Apply prose directly to the content for correct formatting */}
+            <div class="prose prose-lg max-w-none">
+              <ServiceContent />
             </div>
-
-            {/* COLUMN 2: Location Relevance (AI-Generated Hyper-Local Text) */}
-            <div>
-              <h2 class="text-2xl font-bold mb-4">Training in {location.data.city}</h2>
-              {/* FIX: Apply prose directly to the content for correct formatting */}
-              <div class="prose prose-lg">
-                <LocationContent />
-              </div>
-            </div>
-            
           </div>
+
+          {/* Divider for visual separation */}
+          <hr class="my-10 border-gray-200" /> 
+          
+          {/* ROW 2: Location Relevance (AI-Generated Hyper-Local Text) */}
+          <div>
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Training in {location.data.city} Specifics</h2>
+            {/* FIX: Apply prose directly to the content for correct formatting */}
+            <div class="prose prose-lg max-w-none">
+              <LocationContent />
+            </div>
+          </div>
+            
         </div>
       </div>
       
@@ -99,4 +100,3 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
     </div>
   </main>
 </Layout>
-
