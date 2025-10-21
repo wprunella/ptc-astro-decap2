@@ -57,13 +57,13 @@ const { Content } = await service.render();
           <h2 class="text-2xl font-bold mb-6 text-center">Find {service.data.name} in Your City</h2>
           <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
             {majorCities.map((city) => (
-                // FIX APPLIED: Wrapping HTML block in parentheses ()
-              (<a 
+                // FIX APPLIED: Removed redundant outer curly brace '{' around the HTML return
+              <a 
                 href={`/${service.slug}/${city.slug}`}
                 class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
               >
                 {city.data.city}, {city.data.state}
-              </a>)
+              </a>
             ))}
           </div>
         </div>
