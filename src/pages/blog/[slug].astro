@@ -15,6 +15,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+// FIX: Call render() to get the Content component
+const { Content } = await post.render(); 
+
 const formattedDate = new Date(post.data.publish_date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -47,8 +50,8 @@ const formattedDate = new Date(post.data.publish_date).toLocaleDateString('en-US
           </header>
 
           <div class="prose prose-xl max-w-none text-gray-700">
-            <!-- Renders the Markdown body content -->
-            <div>{post.body}</div>
+            <!-- FIX APPLIED: Render the Content component -->
+            <Content /> 
           </div>
           
           <div class="mt-10 pt-6 border-t">
