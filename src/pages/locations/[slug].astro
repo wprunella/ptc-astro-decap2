@@ -8,11 +8,11 @@ import SEO from '../../components/SEO.astro';
 
 // 1. Dynamic Routing: Generates pages for ALL locations (Major City & Suburb)
 export async function getStaticPaths() {
-  const locations = await getCollection('locations');
-  return locations.map((location) => ({
-    params: { slug: location.slug },
-    props: { location },
-  }));
+  const locations = await getCollection('locations');
+  return locations.map((location) => ({
+    params: { slug: location.slug },
+    props: { location },
+  }));
 }
 
 const { location } = Astro.props;
@@ -24,104 +24,104 @@ const { Content: LocationContent } = await location.render();
 
 // Logic for Interlinking:
 // Only show the first 6 services as major links
-const majorServices = services.slice(0, 6); 
+const majorServices = services.slice(0, 6); 
 
 // For Major Cities: Find all associated Suburbs
-const associatedSuburbs = location.data.type === 'major_city' 
-  ? allLocations.filter(loc => loc.data.type === 'suburb' && loc.data.parent_slug === location.slug)
-  : [];
-  
+const associatedSuburbs = location.data.type === 'major_city' 
+  ? allLocations.filter(loc => loc.data.type === 'suburb' && loc.data.parent_slug === location.slug)
+  : [];
+  
 // For Suburbs: Find the parent Major City for the backlink
-const parentCity = location.data.type === 'suburb' 
-  ? allLocations.find(loc => loc.slug === location.data.parent_slug)
-  : null;
+const parentCity = location.data.type === 'suburb' 
+  ? allLocations.find(loc => loc.slug === location.data.parent_slug)
+  : null;
 ---
 
 <Layout title={location.data.meta_title || `Personal Training in ${location.data.city}, ${location.data.state}`}>
-  <HeaderNav />
-  <SEO 
-    title={location.data.meta_title || `Personal Training in ${location.data.city}, ${location.data.state}`}
-    description={location.data.meta_description || `Find certified personal trainers in ${location.data.city}, ${location.data.state}. Custom workout plans and fitness programs.`}
-    canonical={`/locations/${location.slug}/`}
-  />
+  <HeaderNav />
+  <SEO 
+    title={location.data.meta_title || `Personal Training in ${location.data.city}, ${location.data.state}`}
+    description={location.data.meta_description || `Find certified personal trainers in ${location.data.city}, ${location.data.state}. Custom workout plans and fitness programs.`}
+    canonical={`/locations/${location.slug}/`}
+  />
 
-  <main class="min-h-screen bg-gray-50">
-    <div class="container mx-auto px-4 py-8">
-      <!-- Hero Section -->
-      <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
-        <div class="text-center mb-8">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Personal Training in {location.data.city}, {location.data.state}
-          </h1>
-          {/* Suburb context (only displays on suburbs) */}
-          {parentCity && (
-            <p class="text-lg text-gray-600">
-              Serving the {parentCity.data.city} area
-            </p>
-          )}
-        </div>
-        
-        <FeaturedImage 
-          src={location.data.hero_image} 
-          alt={`Personal training in ${location.data.city}, ${location.data.state}`}
-          className="mb-8"
-        />
-        
-        <div class="prose prose-lg max-w-none mb-8">
-          {/* FIX APPLIED: Renders the formatted Markdown content */}
-          <LocationContent />
-        </div>
-        
-        <!-- Pillar-Cluster Interlinking (Service Links) -->
-        <div class="mt-12">
-          <h2 class="text-2xl font-bold mb-6 text-center">Available Services in {location.data.city}</h2>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {majorServices.map((service) => (
-              <a 
-                // Link to the COUPLED PAGE: /service-slug/location-slug
-                href={`/${service.slug}/${location.slug}`}
-                class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
-              >
-                {service.data.name}
-              </a>
-            ))}
-          </div>
-        </div>
-        
-        {/* Associated Suburbs (only displays on major cities) */}
-        {associatedSuburbs.length > 0 && (
-          <div class="mt-12">
-            <h2 class="text-2xl font-bold mb-6 text-center">Also Serving These {location.data.city} Suburbs</h2>
-            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {associatedSuburbs.map((suburb) => (
-                <a 
-                  // Link to the Suburb Location Pillar Page: /locations/suburb-slug
-                  href={`/locations/${suburb.slug}`}
-                  class="bg-gray-100 text-gray-700 p-4 rounded-lg text-center hover:bg-gray-200 transition-colors"
-                >
-                  {suburb.data.city}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-        
-        {/* Backlink to parent city (only displays on suburbs) */}
-        {parentCity && (
-          <div class="mt-8 text-center">
-            <a 
-              // Backlink to the Major City Pillar Page: /locations/major-city-slug
-              href={`/locations/${parentCity.slug}`}
-              class="text-primary-600 hover:text-primary-700 font-semibold"
-            >
-              ← Back to {parentCity.data.city} Main Page
-            </a>
-          </div>
-        )}
-      </div>
-      
-      <!-- Lead Form -->
-      <LeadWebformCTA pageSlug={`locations/${location.slug}`} />
-    </div>
-  </main>
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Hero Section -->
+      <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Personal Training in {location.data.city}, {location.data.state}
+          </h1>
+          {/* Suburb context (only displays on suburbs) */}
+          {parentCity && (
+            <p class="text-lg text-gray-600">
+              Serving the {parentCity.data.city} area
+            </p>
+          )}
+        </div>
+        
+        <FeaturedImage 
+          src={location.data.hero_image} 
+          alt={`Personal training in ${location.data.city}, ${location.data.state}`}
+          className="mb-8"
+        />
+        
+        <div class="prose prose-lg max-w-none mb-8">
+          {/* Renders the formatted Markdown content */}
+          <LocationContent />
+        </div>
+        
+        <!-- Pillar-Cluster Interlinking (Service Links) -->
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold mb-6 text-center">Available Services in {location.data.city}</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {majorServices.map((service) => (
+              <a 
+                {/* 🔥 CRITICAL FIX: Link now points to /location-slug/service-slug */}
+                href={`/${location.slug}/${service.slug}`} 
+                class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
+              >
+                {service.data.name}
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        {/* Associated Suburbs (only displays on major cities) */}
+        {associatedSuburbs.length > 0 && (
+          <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 text-center">Also Serving These {location.data.city} Suburbs</h2>
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {associatedSuburbs.map((suburb) => (
+                <a 
+                  {/* Link to the Suburb Location Pillar Page: /locations/suburb-slug */}
+                  href={`/locations/${suburb.slug}`}
+                  class="bg-gray-100 text-gray-700 p-4 rounded-lg text-center hover:bg-gray-200 transition-colors"
+                >
+                  {suburb.data.city}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Backlink to parent city (only displays on suburbs) */}
+        {parentCity && (
+          <div class="mt-8 text-center">
+            <a 
+              {/* Backlink to the Major City Pillar Page: /locations/major-city-slug */}
+              href={`/locations/${parentCity.slug}`}
+              class="text-primary-600 hover:text-primary-700 font-semibold"
+            >
+              ← Back to {parentCity.data.city} Main Page
+            </a>
+          </div>
+        )}
+      </div>
+      
+      <!-- Lead Form -->
+      <LeadWebformCTA pageSlug={`locations/${location.slug}`} />
+    </div>
+  </main>
 </Layout>

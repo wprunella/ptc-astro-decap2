@@ -57,7 +57,7 @@ const { Content } = await service.render();
           <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
             {majorCities.map((city) => (
               <a 
-                href={`/${service.slug}/${city.slug}`}
+                href={`/${city.slug}/${service.slug}`}
                 class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
               >
                 {city.data.city}, {city.data.state}

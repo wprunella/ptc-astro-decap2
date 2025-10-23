@@ -4,10 +4,13 @@ import HeaderNav from '../components/HeaderNav.astro';
 import SEO from '../components/SEO.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
+// CRITICAL COMPONENT: Import Lead Webform
+import LeadWebformCTA from '../components/LeadWebformCTA.astro';
 
 const services = await getCollection('services');
 const locations = await getCollection('locations');
 
+// Logic for Pillar Links: ONLY Major Cities and ONLY Major Services
 const majorCities = locations.filter(loc => loc.data.type === 'major_city');
 const majorServices = services.slice(0, 6);
 ---
@@ -16,11 +19,10 @@ const majorServices = services.slice(0, 6);
   <HeaderNav />
   <SEO 
     title="Personal Trainer City | Find Certified Fitness Coaches Near You"
-    description="Connect with certified personal trainers in your area. Custom workout plans, nutrition coaching, and fitness programs for all levels."
+    description="Connect with certified personal trainers in your city. Custom workout plans, nutrition coaching, and fitness programs for all levels."
   />
 
   <main class="min-h-screen">
-    <!-- Hero Section -->
     <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-20">
       <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-6">Find Your Perfect Personal Trainer</h1>
@@ -33,7 +35,6 @@ const majorServices = services.slice(0, 6);
       </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
@@ -63,7 +64,6 @@ const majorServices = services.slice(0, 6);
       </div>
     </section>
 
-    <!-- Locations Section -->
     <section class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Find Trainers in Your City</h2>
@@ -84,6 +84,15 @@ const majorServices = services.slice(0, 6);
           </a>
         </div>
       </div>
+    </section>
+
+    <section class="py-16 bg-primary-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-white text-center mb-6">Ready to Start Your Transformation?</h2>
+            <p class="text-xl text-white/90 text-center mb-10">Connect with a certified expert today. It only takes 60 seconds!</p>
+            {/* The Webform Component */}
+            <LeadWebformCTA pageSlug="homepage" />
+        </div>
     </section>
   </main>
   

@@ -6,7 +6,7 @@ import FeaturedImage from '../../components/FeaturedImage.astro';
 import LeadWebformCTA from '../../components/LeadWebformCTA.astro';
 import SEO from '../../components/SEO.astro';
 
-// 1. DYNAMIC ROUTING: Generates all service/location combinations (e.g., /strength-training/washington-dc/)
+// 1. DYNAMIC ROUTING: Generates all service/location combinations (e.g., /washington-dc/strength-training/)
 export async function getStaticPaths() {
   const services = await getCollection('services');
   const locations = await getCollection('locations');
@@ -18,8 +18,9 @@ export async function getStaticPaths() {
     for (const location of locations) {
       paths.push({
         params: {
-          serviceSlug: service.slug,
-          locationSlug: location.slug
+          // 🔥 CRITICAL FIX: SWAP ORDER to enforce /location/service/
+          locationSlug: location.slug, 
+          serviceSlug: service.slug
         },
         props: {
           service,
@@ -48,13 +49,12 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
   <SEO 
     title={pageTitle}
     description={pageDescription}
-    // Canonical URL enforces the /service/location structure
-    canonical={`/${service.slug}/${location.slug}/`}
+    // 🔥 CRITICAL FIX: Canonical URL enforces the /location/service structure
+    canonical={`/${location.slug}/${service.slug}/`}
   />
 
   <main class="min-h-screen bg-gray-50">
     <div class="container mx-auto px-4 py-8">
-      <!-- Hero Section -->
       <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
         <div class="text-center mb-8">
           {/* H1 Mapping: Targets the high-intent query */}
@@ -68,7 +68,6 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
           className="mb-8"
         />
         
-        <!-- Content Fusion: Merging Service Expertise and Local Relevance (NOW STACKED) -->
         <div class="max-w-none"> 
           
           {/* ROW 1: Service Authority (Long Description) */}
@@ -95,8 +94,8 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
         </div>
       </div>
       
-      <!-- Conversion Trigger (The P.P.I. Webform) -->
-      <LeadWebformCTA pageSlug={`${service.slug}/${location.slug}`} />
+      {/* URL in pageSlug must also match the new structure */}
+      <LeadWebformCTA pageSlug={`${location.slug}/${service.slug}`} /> 
     </div>
   </main>
 </Layout>
