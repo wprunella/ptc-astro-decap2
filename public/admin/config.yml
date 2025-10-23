@@ -44,7 +44,7 @@ collections:
       - {label: "State", name: "state", widget: "string"}
       # CRITICAL FIX: Slug must be an input field for clean filenames
       - {label: "Slug", name: "slug", widget: "string", hint: "Used for URL and filename (e.g., washington-dc)"}
-      - {label: "Type", name: "type", widget: "select", options: ["major_city", "suburb"]}
+      - {label: "Type", name: "type", widget: "select", options: ["major_city", "suburb", "neighborhood"]}
       - {label: "Parent Slug", name: "parent_slug", widget: "string", required: false, hint: "Required only for suburbs. Use the slug of the major city."}
       - {label: "Hero Image", name: "hero_image", widget: "image"}
       - {label: "Zip Codes", name: "zip_codes", widget: "list", required: false}
