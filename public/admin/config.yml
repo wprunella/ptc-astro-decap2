@@ -29,8 +29,8 @@ auth:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 site_url: https://ptcity.netlify.app
 
-media_folder: "/images"
-public_folder: "/images"
+media_folder: "src/assets/images"
+public_folder: "src/assets/images"
 
 collections:
   - name: "locations"
