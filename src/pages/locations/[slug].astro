@@ -6,7 +6,7 @@ import FeaturedImage from '../../components/FeaturedImage.astro';
 import LeadWebformCTA from '../../components/LeadWebformCTA.astro';
 import SEO from '../../components/SEO.astro';
 
-// 1. Dynamic Routing: Generates pages for ALL locations (Major City & Suburb)
+// 1. Dynamic Routing: Generates pages for ALL locations (Major City, Suburb, Neighborhood)
 export async function getStaticPaths() {
   const locations = await getCollection('locations');
   return locations.map((location) => ({
@@ -25,13 +25,20 @@ const { Content: LocationContent } = await location.render();
 // Logic for Interlinking:
 const majorServices = services.slice(0, 6); // Only show the first 6 services
 
-// For Major Cities: Find all associated Suburbs
-const associatedSuburbs = location.data.type === 'major_city' 
+const isMajorCity = location.data.type === 'major_city';
+
+// 1. Filter associated SUBURBS (e.g., Arlington, VA for Washington-DC)
+const associatedSuburbs = isMajorCity 
   ? allLocations.filter(loc => loc.data.type === 'suburb' && loc.data.parent_slug === location.slug)
   : [];
   
-// For Suburbs: Find the parent Major City for the backlink
-const parentCity = location.data.type === 'suburb' 
+// 2. Filter associated NEIGHBORHOODS (e.g., Georgetown for Washington-DC)
+const associatedNeighborhoods = isMajorCity 
+  ? allLocations.filter(loc => loc.data.type === 'neighborhood' && loc.data.parent_slug === location.slug)
+  : [];
+  
+// For Suburbs/Neighborhoods: Find the parent Major City for the backlink
+const parentCity = (location.data.type === 'suburb' || location.data.type === 'neighborhood')
   ? allLocations.find(loc => loc.slug === location.data.parent_slug)
   : null;
 ---
@@ -51,7 +58,7 @@ const parentCity = location.data.type === 'suburb'
           <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Personal Training in {location.data.city}, {location.data.state}
           </h1>
-          {/* Suburb context (only displays on suburbs) */}
+          {/* Suburb/Neighborhood context */}
           {parentCity && (
             <p class="text-lg text-gray-600">
               Serving the {parentCity.data.city} area
@@ -66,48 +73,62 @@ const parentCity = location.data.type === 'suburb'
         />
         
         <div class="prose prose-lg max-w-none mb-8">
-          {/* FIX APPLIED: Renders the formatted Markdown content */}
+          {/* Renders the formatted Markdown content */}
           <LocationContent />
         </div>
         
         <div class="mt-12">
           <h2 class="text-2xl font-bold mb-6 text-center">Available Services in {location.data.city}</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {majorServices.map((service) => {
-              return (
-                <a 
-                  // Link to the COUPLED PAGE: /location-slug/service-slug
-                  href={`/${location.slug}/${service.slug}`} 
-                  class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
-                >
-                  {service.data.name}
-                </a>
-              );
-            })}
+            {majorServices.map((service) => (
+              <a 
+                // Link to the COUPLED PAGE: /location-slug/service-slug
+                href={`/${location.slug}/${service.slug}`} 
+                class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
+              >
+                {service.data.name}
+              </a>
+            ))}
           </div>
         </div>
         
-        {/* Associated Suburbs (only displays on major cities) */}
+        {/* 2. Associated Neighborhoods (NEW SECTION - only on major cities) */}
+        {associatedNeighborhoods.length > 0 && (
+          <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 text-center">Popular Neighborhoods in {location.data.city}</h2>
+            <div class="grid md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {associatedNeighborhoods.map((neighborhood) => (
+                <a 
+                  // Link to the Neighborhood Location Pillar Page: /locations/neighborhood-slug
+                  href={`/locations/${neighborhood.slug}`}
+                  class="bg-blue-50 text-blue-700 p-3 rounded-lg text-center text-sm hover:bg-blue-100 transition-colors"
+                >
+                  {neighborhood.data.city}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 3. Associated Suburbs (only on major cities) */}
         {associatedSuburbs.length > 0 && (
           <div class="mt-12">
-            <h2 class="text-2xl font-bold mb-6 text-center">Also Serving These {location.data.city} Suburbs</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center">Serving the Greater {location.data.city} Area Suburbs</h2>
             <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {associatedSuburbs.map((suburb) => {
-                return (
-                  <a 
-                    // Link to the Suburb Location Pillar Page: /locations/suburb-slug
-                    href={`/locations/${suburb.slug}`}
-                    class="bg-gray-100 text-gray-700 p-4 rounded-lg text-center hover:bg-gray-200 transition-colors"
-                  >
-                    {suburb.data.city}
-                  </a>
-                );
-              })}
+              {associatedSuburbs.map((suburb) => (
+                <a 
+                  // Link to the Suburb Location Pillar Page: /locations/suburb-slug
+                  href={`/locations/${suburb.slug}`}
+                  class="bg-gray-100 text-gray-700 p-4 rounded-lg text-center hover:bg-gray-200 transition-colors"
+                >
+                  {suburb.data.city}
+                </a>
+              ))}
             </div>
           </div>
         )}
         
-        {/* Backlink to parent city (only displays on suburbs) */}
+        {/* 4. Backlink to parent city (only on suburbs/neighborhoods) */}
         {parentCity && (
           <div class="mt-8 text-center">
             <a 

@@ -5,7 +5,7 @@ const locations = defineCollection({
   schema: z.object({
     city: z.string(),
     state: z.string(),
-    type: z.enum(['major_city', 'suburb']),
+    type: z.enum(['major_city', 'suburb', 'neighborhood']),
     parent_slug: z.string().optional(),
     hero_image: z.string(),
     zip_codes: z.array(z.string()).optional(),

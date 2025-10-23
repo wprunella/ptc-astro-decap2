@@ -14,7 +14,8 @@
           "type": "string",
           "enum": [
             "major_city",
-            "suburb"
+            "suburb",
+            "neighborhood"
           ]
         },
         "parent_slug": {
