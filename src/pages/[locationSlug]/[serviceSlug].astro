@@ -1,101 +1,114 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import HeaderNav from '../../components/HeaderNav.astro';
 import FeaturedImage from '../../components/FeaturedImage.astro';
 import LeadWebformCTA from '../../components/LeadWebformCTA.astro';
 import SEO from '../../components/SEO.astro';
 
-// 1. DYNAMIC ROUTING: Generates all service/location combinations (e.g., /washington-dc/strength-training/)
+// ======================================================
+// 1. Generate Static Paths
+// ======================================================
 export async function getStaticPaths() {
   const services = await getCollection('services');
   const locations = await getCollection('locations');
-  
-  const paths = [];
-  
-  // Create a cartesian product of Services x Locations
-  for (const service of services) {
-    for (const location of locations) {
-      paths.push({
-        params: {
-          // 🔥 CRITICAL FIX: SWAP ORDER to enforce /location/service/
-          locationSlug: location.slug, 
-          serviceSlug: service.slug
-        },
-        props: {
-          service,
-          location
-        }
-      });
-    }
-  }
-  
-  return paths;
+
+  return locations.flatMap((location) =>
+    services.map((service) => ({
+      params: { locationSlug: location.slug, serviceSlug: service.slug },
+      props: { service, location },
+    }))
+  );
 }
 
+// ======================================================
+// 2. Load Data + Handle Inheritance
+// ======================================================
 const { service, location } = Astro.props;
+let parentCity = null;
 
-// FIX: Render the Markdown bodies into reusable Astro components
-const { Content: ServiceContent } = await service.render(); 
-const { Content: LocationContent } = await location.render(); 
+// if suburb/neighborhood, load parent city data
+if (location.data.parent_slug) {
+  parentCity = await getEntryBySlug('locations', location.data.parent_slug);
+}
 
-// SEO & H1 Mapping Logic
-const pageTitle = `${service.data.name} in ${location.data.city}, ${location.data.state}`;
-const pageDescription = `Find certified ${service.data.name.toLowerCase()} personal trainers in ${location.data.city}, ${location.data.state}. ${service.data.tagline}`;
+const { Content: ServiceContent } = await service.render();
+const { Content: LocationContent } = await location.render();
+const { Content: ParentContent } = parentCity ? await parentCity.render() : {};
+
+// ======================================================
+// 3. Metadata + SEO Logic
+// ======================================================
+const city = location.data.city;
+const state = location.data.state;
+const serviceName = service.data.name;
+
+const parentCityName = parentCity?.data?.city;
+const isSuburb = Boolean(location.data.parent_slug);
+
+const pageTitle = `${serviceName} in ${city}, ${state}`;
+const pageDescription =
+  location.data.meta_description ||
+  service.data.meta_description ||
+  `Find top-rated ${serviceName.toLowerCase()} trainers serving ${city}${
+    isSuburb ? ` — part of the ${parentCityName} area` : ''
+  }. Personalized fitness plans available across ${state}.`;
+
+const canonicalUrl = `/${location.slug}/${service.slug}/`;
 ---
 
 <Layout title={pageTitle}>
   <HeaderNav />
-  <SEO 
-    title={pageTitle}
-    description={pageDescription}
-    // 🔥 CRITICAL FIX: Canonical URL enforces the /location/service structure
-    canonical={`/${location.slug}/${service.slug}/`}
-  />
+  <SEO title={pageTitle} description={pageDescription} canonical={canonicalUrl} />
 
   <main class="min-h-screen bg-gray-50">
     <div class="container mx-auto px-4 py-8">
-      <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
-        <div class="text-center mb-8">
-          {/* H1 Mapping: Targets the high-intent query */}
+      <article class="bg-white rounded-lg shadow-sm p-8 mb-8 prose prose-lg max-w-none">
+        
+        <!-- HERO -->
+        <header class="text-center mb-10">
           <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">{service.data.tagline}</p>
-        </div>
-        
-        <FeaturedImage 
-          src={service.data.hero_image} 
-          alt={`${service.data.name} in ${location.data.city}`}
-          className="mb-8"
-        />
-        
-        <div class="max-w-none"> 
-          
-          {/* ROW 1: Service Authority (Long Description) */}
-          <div class="mb-8">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">About Our {service.data.name} Program</h2>
-            {/* FIX: Apply prose directly to the content for correct formatting */}
-            <div class="prose prose-lg max-w-none">
-              <ServiceContent />
-            </div>
-          </div>
+          {service.data.tagline && (
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">{service.data.tagline}</p>
+          )}
+          {service.data.hero_image && (
+            <FeaturedImage src={service.data.hero_image} alt={`${serviceName} in ${city}`} className="my-8" />
+          )}
+        </header>
 
-          {/* Divider for visual separation */}
-          <hr class="my-10 border-gray-200" /> 
-          
-          {/* ROW 2: Location Relevance (AI-Generated Hyper-Local Text) */}
-          <div>
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">Training in {location.data.city} Specifics</h2>
-            {/* FIX: Apply prose directly to the content for correct formatting */}
-            <div class="prose prose-lg max-w-none">
-              <LocationContent />
-            </div>
-          </div>
-            
-        </div>
-      </div>
-      
-      {/* URL in pageSlug must also match the new structure */}
-      <LeadWebformCTA pageSlug={`${location.slug}/${service.slug}`} /> 
+        <!-- SERVICE CONTENT -->
+        <section class="mb-10">
+          <h2 class="text-3xl font-semibold mb-4 text-gray-800">
+            About Our {serviceName} Program
+          </h2>
+          <ServiceContent />
+        </section>
+
+        <hr class="my-10 border-gray-200" />
+
+        <!-- LOCATION CONTENT -->
+        <section class="mb-10">
+          <h2 class="text-3xl font-semibold mb-4 text-gray-800">
+            Training in {city}, {state}
+          </h2>
+
+          {location.body ? (
+            <LocationContent />
+          ) : parentCity ? (
+            <>
+              <p>{city} is part of the greater {parentCityName} area, offering access to top {serviceName.toLowerCase()} professionals serving nearby neighborhoods.</p>
+              <ParentContent />
+            </>
+          ) : (
+            <p>
+              {city} residents can access certified {serviceName.toLowerCase()} trainers throughout {state}. 
+              Programs are designed for efficiency, accountability, and lasting results.
+            </p>
+          )}
+        </section>
+      </article>
+
+      <LeadWebformCTA pageSlug={`${location.slug}/${service.slug}`} />
     </div>
   </main>
 </Layout>

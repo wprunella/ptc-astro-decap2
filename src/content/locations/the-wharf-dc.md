@@ -71,6 +71,4 @@ We understand that Wharf residents value:
 
 ## Getting Started with Your Wharf Trainer
 
-Begin your fitness journey by browsing our meticulously selected network of certified personal trainers serving The Wharf and surrounding Southwest Waterfront. Review their luxury property experience, waterfront training expertise, and understanding of premium service standards to find your ideal match. All trainers offer private consultations that respect the sophisticated environment and privacy expectations of Wharf residents. With PersonalTrainerCity.com, you're connecting with fitness professionals who understand how to deliver exceptional results within one of DC's most exclusive residential environments.
-
 Ready to find your ideal premium personal trainer at The Wharf? Explore our elite professionals today and take the first step toward achieving your fitness goals while experiencing everything this world-class waterfront development offers.

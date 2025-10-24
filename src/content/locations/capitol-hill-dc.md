@@ -65,6 +65,4 @@ We understand that Capitol Hill residents value:
 
 ## Getting Started with Your Capitol Hill Trainer
 
-Begin your fitness journey by browsing our network of certified personal trainers serving Capitol Hill and surrounding DC neighborhoods. Review their political schedule experience, early morning availability, and knowledge of Hill security protocols to find your ideal match. Most trainers offer flexible scheduling that can adapt to last-minute vote alerts and changing congressional calendars. With PersonalTrainerCity.com, you're connecting with fitness professionals who understand how to make training work within Capitol Hill's unique political ecosystem while delivering consistent results despite unpredictable schedules.
-
 Ready to find your ideal personal trainer on Capitol Hill? Explore our certified professionals today and take the first step toward achieving your fitness goals while navigating everything this politically-charged neighborhood demands.

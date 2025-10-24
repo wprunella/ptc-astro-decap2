@@ -65,6 +65,4 @@ We understand that Navy Yard residents value:
 
 ## Getting Started with Your Navy Yard Trainer
 
-Begin your fitness journey by browsing our network of certified personal trainers serving Navy Yard and surrounding Southeast DC neighborhoods. Review their modern facility experience, schedule flexibility, and knowledge of neighborhood amenities to find your ideal match. Most trainers offer flexible consultation options that work with demanding professional schedules and game-day calendars. With PersonalTrainerCity.com, you're connecting with fitness professionals who understand how to make training effective within Navy Yard's dynamic, modern environment while delivering results that enhance your urban lifestyle.
-
 Ready to find your ideal personal trainer in Navy Yard? Explore our certified professionals today and take the first step toward achieving your fitness goals while enjoying everything this vibrant waterfront neighborhood offers.

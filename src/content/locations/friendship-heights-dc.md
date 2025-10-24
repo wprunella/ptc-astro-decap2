@@ -65,6 +65,4 @@ We understand that Friendship Heights residents value:
 
 ## Getting Started with Your Friendship Heights Trainer
 
-Begin your fitness journey by browsing our network of certified personal trainers serving Friendship Heights and surrounding Northwest DC/Maryland border areas. Review their luxury high-rise experience, border area knowledge, and understanding of urban luxury living to find your ideal match. Most trainers offer consultation options that respect the sophisticated character and convenient lifestyle of this premier community. With PersonalTrainerCity.com, you're connecting with fitness professionals who understand how to make training effective within Friendship Heights' unique border-urban environment while delivering results that enhance your neighborhood lifestyle.
-
 Ready to find your ideal personal trainer in Friendship Heights? Explore our certified professionals today and take the first step toward achieving your fitness goals while experiencing everything this premier DC neighborhood offers.
