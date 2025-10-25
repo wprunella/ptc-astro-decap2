@@ -47,7 +47,7 @@ const majorServices = services.slice(0, 6);
               <div class="p-6">
                 <p class="text-gray-600 mb-4">{service.data.tagline}</p>
                 <a 
-                  href={`/services/${service.slug}`}
+                  href={`/${service.slug}`}
                   class="text-primary-600 font-semibold hover:text-primary-700 transition-colors"
                 >
                   Learn More →
@@ -70,7 +70,7 @@ const majorServices = services.slice(0, 6);
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {majorCities.map((location) => (
             <a 
-              href={`/locations/${location.slug}`}
+              href={`/${location.slug}`}
               class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow border border-gray-100"
             >
               <h3 class="text-xl font-semibold text-gray-800 mb-2">{location.data.city}</h3>

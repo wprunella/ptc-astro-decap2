@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import SEO from '../components/SEO.astro';
+import Footer from '../components/Footer.astro';
+
+const allServices = await getCollection('services');
+---
+
+<Layout title="All Fitness Programs | Personal Trainer City">
+  <HeaderNav />
+  <SEO 
+    title="Our Complete List of Personal Training Services"
+    description="Browse our complete range of certified personal training programs including strength, flexibility, rehabilitation, and sports conditioning."
+    canonical="/services/"
+  />
+
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">All Training Programs</h1>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {allServices.map((service) => (
+          <a 
+            href={`/${service.slug}`} 
+            class="bg-white rounded-lg shadow-md overflow-hidden p-6 hover:shadow-lg transition-shadow border border-gray-100 block"
+          >
+            <h2 class="text-2xl font-bold text-primary-800 mb-3">{service.data.name}</h2>
+            <p class="text-gray-600 mb-4">{service.data.tagline}</p>
+            <div class="text-right text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+              View Program Details →
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+

@@ -29,7 +29,7 @@ const majorServices = services.slice(0, 4);
           <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             {majorServices.map((service) => (
               <a 
-                href={`/services/${service.slug}`}
+                href={`/${service.slug}`}
                 class="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
               >
                 {service.data.name}
@@ -52,7 +52,7 @@ const majorServices = services.slice(0, 4);
           <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             {majorCities.map((location) => (
               <a 
-                href={`/locations/${location.slug}`}
+                href={`/${location.slug}`}
                 class="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
               >
                 {location.data.city}, {location.data.state}

@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import SEO from '../components/SEO.astro';
+import Footer from '../components/Footer.astro';
+
+const allLocations = await getCollection('locations');
+const majorCities = allLocations.filter(loc => loc.data.type === 'major_city').sort((a, b) => a.data.city.localeCompare(b.data.city));
+const suburbsAndNeighborhoods = allLocations.filter(loc => loc.data.type !== 'major_city').sort((a, b) => a.data.city.localeCompare(b.data.city));
+---
+
+<Layout title="All Service Areas | Personal Trainer City">
+  <HeaderNav />
+  <SEO 
+    title="All Service Areas & Locations | Find a Trainer Near You"
+    description="Browse our complete list of cities, suburbs, and neighborhoods served by certified personal trainers."
+    canonical="/locations/"
+  />
+
+  <main class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">All Areas We Serve</h1>
+      
+      {/* Major Cities List */}
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-primary-700 mb-6 border-b pb-2">Major Metropolitan Hubs</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {majorCities.map((loc) => (
+            <a 
+              href={`/${loc.slug}`} 
+              class="bg-white rounded-lg shadow-md p-5 text-center hover:shadow-lg transition-shadow border border-primary-100"
+            >
+              <h3 class="text-xl font-semibold text-gray-800">{loc.data.city}, {loc.data.state}</h3>
+              <p class="text-sm text-primary-600 font-medium">Explore Hub →</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Suburbs & Neighborhoods List */}
+      <section>
+        <h2 class="text-3xl font-bold text-primary-700 mb-6 border-b pb-2">Suburbs & Neighborhoods</h2>
+        <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {suburbsAndNeighborhoods.map((loc) => (
+            <a 
+              href={`/${loc.slug}`} 
+              class="bg-gray-100 rounded-lg p-3 text-center text-sm hover:bg-gray-200 transition-colors"
+            >
+              {loc.data.city} ({loc.data.state})
+            </a>
+          ))}
+        </div>
+      </section>
+      
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
