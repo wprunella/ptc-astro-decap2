@@ -76,13 +76,10 @@ if (type === 'location') {
     />
 
     <main class="min-h-screen bg-gray-50">
-        <div class="container mx-auto px-4 py-8">
-            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+        <!-- CRITICAL FIX: Remove 'container mx-auto' from the outer wrapper. Apply w-full and px-4. -->
+        <div class="w-full px-4 py-8">
+            <!-- New inner container ensures content is centered and constrained -->
 
-                <div class="text-center mb-8">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">{entry.data.tagline || ''}</p>
-                </div>
                 
                 <FeaturedImage 
                     src={entry.data.hero_image} 
@@ -94,6 +91,10 @@ if (type === 'location') {
                     <Content />
                 </div>
 
+                <!-- ---------------------------------------------------- -->
+                <!-- 🎯 SECTION 2: INTERLINKING LOGIC (Conditional) -->
+                <!-- ---------------------------------------------------- -->
+                
                 {/* --- A. Service Pillar Links (Only displays on Location Pages) --- */}
                 {type === 'location' && (
                     <div class="mt-12">
@@ -174,6 +175,7 @@ if (type === 'location') {
 
             </div>
             
+            <!-- Conversion Trigger (The P.P.I. Webform) -->
             <LeadWebformCTA pageSlug={entry.slug} />
         </div>
     </main>

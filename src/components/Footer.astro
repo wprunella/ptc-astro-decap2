@@ -44,7 +44,7 @@ const majorLocations = locations.filter(loc => loc.data.type === 'major_city').s
           {majorServices.map((service) => (
             <li>
               <a 
-                href={`/services/${service.slug}`}
+                href={`/${service.slug}`}
                 class="text-gray-300 hover:text-primary-400 transition-colors"
               >
                 {service.data.name}
@@ -66,7 +66,7 @@ const majorLocations = locations.filter(loc => loc.data.type === 'major_city').s
           {majorLocations.map((location) => (
             <li>
               <a 
-                href={`/locations/${location.slug}`}
+                href={`/${location.slug}`}
                 class="text-gray-300 hover:text-primary-400 transition-colors"
               >
                 {location.data.city}, {location.data.state}

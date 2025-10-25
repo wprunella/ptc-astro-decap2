@@ -8,34 +8,34 @@ const majorCities = locations.filter(loc => loc.data.type === 'major_city');
 const majorServices = services.slice(0, 4);
 ---
 
-<header class="bg-white shadow-sm sticky top-0 z-50">
+<header class="bg-[#003366] shadow-sm sticky top-0 z-50">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center">
       <!-- Logo -->
-      <a href="/" class="text-2xl font-bold text-primary-600">Personal Trainer City</a>
+      <a href="/" class="text-2xl font-bold text-white">Personal Trainer City</a>
       
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class="text-gray-700 hover:text-primary-600 transition-colors">Home</a>
+        <a href="/" class="text-white hover:text-primary-600 transition-colors">Home</a>
         
         <!-- Services Dropdown -->
         <div class="relative group">
-          <button class="text-gray-700 hover:text-primary-600 transition-colors flex items-center">
+          <button class="text-white hover:text-primary-600 transition-colors flex items-center">
             Services
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div class="absolute top-full left-0 mt-2 w-48 bg-[#003366] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             {majorServices.map((service) => (
               <a 
                 href={`/${service.slug}`}
-                class="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                class="block px-4 py-2 text-white hover:bg-primary-50 hover:text-primary-600 transition-colors"
               >
                 {service.data.name}
               </a>
             ))}
-            <a href="/services" class="block px-4 py-2 text-primary-600 font-semibold border-t border-gray-100">
+            <a href="/services" class="block px-4 py-2 text-white font-semibold border-t border-gray-100">
               View All Services
             </a>
           </div>
@@ -43,32 +43,32 @@ const majorServices = services.slice(0, 4);
         
         <!-- Locations Dropdown -->
         <div class="relative group">
-          <button class="text-gray-700 hover:text-primary-600 transition-colors flex items-center">
+          <button class="text-white hover:text-primary-600 transition-colors flex items-center">
             Locations
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div class="absolute top-full left-0 mt-2 w-48 bg-[#003366] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             {majorCities.map((location) => (
               <a 
                 href={`/${location.slug}`}
-                class="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                class="block px-4 py-2 text-white hover:bg-primary-50 hover:text-white transition-colors"
               >
                 {location.data.city}, {location.data.state}
               </a>
             ))}
-            <a href="/locations" class="block px-4 py-2 text-primary-600 font-semibold border-t border-gray-100">
+            <a href="/locations" class="block px-4 py-2 text-white font-semibold border-t border-gray-100">
               View All Locations
             </a>
           </div>
         </div>
         
-        <a href="/blog" class="text-gray-700 hover:text-primary-600 transition-colors">Blog</a>
+        <a href="/blog" class="text-white hover:text-white transition-colors">Blog</a>
       </div>
       
       <!-- Mobile Menu Button -->
-      <button class="md:hidden text-gray-700" id="mobile-menu-button" aria-label="Toggle mobile menu">
+      <button class="md:hidden text-white" id="mobile-menu-button" aria-label="Toggle mobile menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -76,12 +76,12 @@ const majorServices = services.slice(0, 4);
     </div>
     
     <!-- Mobile Menu -->
-    <div class="md:hidden hidden mt-4 pt-4 border-t border-gray-200" id="mobile-menu">
+    <div class="md:hidden hidden mt-4 pt-4" id="mobile-menu">
       <div class="space-y-4">
-        <a href="/" class="block text-gray-700 hover:text-primary-600 transition-colors">Home</a>
-        <a href="/services" class="block text-gray-700 hover:text-primary-600 transition-colors">Services</a>
-        <a href="/locations" class="block text-gray-700 hover:text-primary-600 transition-colors">Locations</a>
-        <a href="/blog" class="block text-gray-700 hover:text-primary-600 transition-colors">Blog</a>
+        <a href="/" class="block text-white hover:text-primary-600 transition-colors">Home</a>
+        <a href="/services" class="block text-white hover:text-primary-600 transition-colors">Services</a>
+        <a href="/locations" class="block text-white hover:text-primary-600 transition-colors">Locations</a>
+        <a href="/blog" class="block text-white hover:text-primary-600 transition-colors">Blog</a>
       </div>
     </div>
   </nav>
