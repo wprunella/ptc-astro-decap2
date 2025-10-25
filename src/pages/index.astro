@@ -6,6 +6,8 @@ import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 // CRITICAL COMPONENT: Import Lead Webform
 import LeadWebformCTA from '../components/LeadWebformCTA.astro';
+// Assuming a FeaturedImage component exists and takes src/alt/className
+import FeaturedImage from '../components/FeaturedImage.astro'; 
 
 const services = await getCollection('services');
 const locations = await getCollection('locations');
@@ -23,63 +25,73 @@ const majorServices = services.slice(0, 6);
   />
 
   <main class="min-h-screen">
-    <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-20">
+    <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-24 md:py-32">
       <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">Find Your Perfect Personal Trainer</h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-          Connect with certified fitness professionals in your city. Transform your body and lifestyle with personalized coaching.
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Find Your Perfect Personal Trainer</h1>
+        <p class="text-lg md:text-xl mb-10 max-w-4xl mx-auto opacity-90">
+          Connect with **certified fitness professionals** in your city. Transform your body and lifestyle with personalized coaching tailored to your goals.
         </p>
-        <a href="#services" class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-block">
-          Explore Services
+        <a href="#services" class="bg-white text-primary-700 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-gray-200 transition-all duration-300 inline-block uppercase tracking-wide">
+          Explore Programs
         </a>
       </div>
     </section>
 
-    <section id="services" class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-14">Our Specialized Services</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {majorServices.map((service) => (
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="h-48 bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
-                <h3 class="text-2xl font-bold text-white text-center px-4">{service.data.name}</h3>
+            <a 
+              href={`/${service.slug}`} 
+              class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 block"
+            >
+              {/* IMAGE WRAPPER with FALLBACK */}
+              <div class="h-56 w-full relative bg-gray-200 overflow-hidden">
+                <FeaturedImage
+                  src={service.data.hero_image} 
+                  alt={service.data.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <div class="p-6">
-                <p class="text-gray-600 mb-4">{service.data.tagline}</p>
-                <a 
-                  href={`/${service.slug}`}
-                  class="text-primary-600 font-semibold hover:text-primary-700 transition-colors"
-                >
-                  Learn More →
-                </a>
+              
+              <div class="p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">{service.data.name}</h3>
+                <p class="text-gray-600 mb-5 text-sm">{service.data.tagline}</p>
+                <span class="text-primary-600 font-bold flex items-center group-hover:text-primary-700 transition-colors">
+                  Learn More 
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
-        <div class="text-center mt-8">
-          <a href="/services" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+        <div class="text-center mt-12">
+          <a href="/services-list" class="text-primary-600 font-semibold text-lg hover:text-primary-800 transition-colors border-b-2 border-primary-600/50 hover:border-primary-800/50 pb-1">
             View All Services →
           </a>
         </div>
       </div>
     </section>
 
-    <section class="py-16">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Find Trainers in Your City</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section class="bg-gray-100 py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-14">Find Trainers in Your City</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {majorCities.map((location) => (
             <a 
               href={`/${location.slug}`}
-              class="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow border border-gray-100"
+              class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-2xl hover:bg-gray-50 transition-all duration-300 border border-gray-200"
             >
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">{location.data.city}</h3>
-              <p class="text-gray-600">{location.data.state}</p>
+              <h3 class="text-xl font-bold text-primary-800 mb-1">{location.data.city}</h3>
+              <p class="text-sm text-gray-500">{location.data.state}</p>
             </a>
           ))}
         </div>
-        <div class="text-center mt-8">
-          <a href="/locations" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+        <div class="text-center mt-12">
+          <a href="/locations" class="text-primary-600 font-semibold text-lg hover:text-primary-800 transition-colors border-b-2 border-primary-600/50 hover:border-primary-800/50 pb-1">
             View All Locations →
           </a>
         </div>
@@ -90,7 +102,6 @@ const majorServices = services.slice(0, 6);
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-white text-center mb-6">Ready to Start Your Transformation?</h2>
             <p class="text-xl text-white/90 text-center mb-10">Connect with a certified expert today. It only takes 60 seconds!</p>
-            {/* The Webform Component */}
             <LeadWebformCTA pageSlug="homepage" />
         </div>
     </section>
