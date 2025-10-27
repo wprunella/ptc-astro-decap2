@@ -4,7 +4,7 @@ state: DC
 slug: washington-dc
 type: major_city
 parent_slug: ""
-hero_image: /images/locations/washington-dc-hero.jpg
+hero_image: /images/washington-dc-hero.jpg
 zip_codes:
   - "20001"
   - "20004"

@@ -53,12 +53,12 @@ export default function LeadForm({ pageSlug }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-xl max-w-lg mx-auto border-4 border-primary-500">
-      <div className="space-y-4">
+    <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-xl max-w-lg mx-auto border-2 border-primary-200">
+      <div className="space-y-6">
         
         {/* ADDED: Name Field */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Full Name</label>
+          <label htmlFor="name" className="block text-md font-medium text-gray-700">Your Full Name</label>
           <input
             type="text"
             name="name"
@@ -66,12 +66,12 @@ export default function LeadForm({ pageSlug }) {
             required
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
+            className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+          <label htmlFor="email" className="block text-md font-medium text-gray-700">Email</label>
           <input
             type="email"
             name="email"
@@ -79,13 +79,13 @@ export default function LeadForm({ pageSlug }) {
             required
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
+            className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
           />
         </div>
         
         {/* ADDED: Phone Number Field */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone (Optional)</label>
+          <label htmlFor="phone" className="block text-md font-medium text-gray-700">Phone (Optional)</label>
           <input
             type="tel"
             name="phone"
@@ -93,13 +93,13 @@ export default function LeadForm({ pageSlug }) {
             value={formData.phone}
             onChange={handleChange}
             placeholder="(123) 456-7890"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
+            className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
           />
         </div>
 
         {/* ZIP Code Field */}
         <div>
-          <label htmlFor="zip_code" className="block text-sm font-medium text-gray-700">Your ZIP Code</label>
+          <label htmlFor="zip_code" className="block text-md font-medium text-gray-700">Your ZIP Code</label>
           <input
             type="text"
             name="zip_code"
@@ -110,19 +110,19 @@ export default function LeadForm({ pageSlug }) {
             value={formData.zip_code}
             onChange={handleChange}
             placeholder="e.g., 20007"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
+            className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
           />
         </div>
 
         <div>
-          <label htmlFor="goal" className="block text-sm font-medium text-gray-700">Your Primary Fitness Goal</label>
+          <label htmlFor="goal" className="block text-md font-medium text-gray-700">Your Primary Fitness Goal</label>
           <select
             name="goal"
             id="goal"
             required
             value={formData.goal}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
+            className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
           >
             <option value="">Select a Goal</option>
             <option value="weight-loss">Weight Loss</option>
@@ -134,15 +134,15 @@ export default function LeadForm({ pageSlug }) {
         
         {/* ADDED: Message Field */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700">Tell Us About Your Goals (Optional)</label>
+          <label htmlFor="message" className="block text-md font-medium text-gray-700">Tell Us About Your Goals (Optional)</label>
           <textarea
             name="message"
             id="message"
-            rows="3"
+            rows="4"
             value={formData.message}
             onChange={handleChange}
             placeholder="I want to gain 10 lbs of muscle for a triathlon."
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
+            className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm p-2 focus:border-primary-500 focus:ring-primary-500"
           />
         </div>
         

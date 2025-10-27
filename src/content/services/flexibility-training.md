@@ -6,7 +6,7 @@ hero_image: "/assets/images/flexibility-hero.jpg"
 meta_title: "Expert Flexibility Training and Mobility Programs"
 meta_description: "Access tailored programs focused on static, dynamic, and PNF stretching to unlock your body's full range of motion."
 ---
-# Unlock Your Range of Motion
+## Unlock Your Range of Motion
 
 Flexibility training is often overlooked but is crucial for injury prevention and maximizing performance. Our coaches specialize in a variety of techniques designed to restore balance and improve your movement quality.
 
