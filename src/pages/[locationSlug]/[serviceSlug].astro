@@ -55,14 +55,15 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
     canonical={`/${location.slug}/${service.slug}/`} 
   />
 
-  <main class="min-h-screen bg-gray-50">
-    <div class="container mx-auto px-4 py-8">
-      <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
-        <div class="text-center mb-8">
-          {/* H1 Mapping: Targets the high-intent query */}
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">{service.data.tagline}</p>
-        </div>
+  <main class="bg-gray-50 w-full">
+
+    <section class="bg-gray-900 p-40 text-white text-center">
+        {/* H1 Mapping: Targets the high-intent query */}
+        <div class="container mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">{pageTitle}</h1>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto pt-6">{service.data.tagline}</p>
+          </div>
+    </section>
         
         <!--
         <FeaturedImage 
@@ -72,7 +73,8 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
         />
         -->
         
-        <div class="max-w-none"> 
+        <div class="container mx-auto px-4 md:px-6 py-12">
+        <div class="max-w-6xl mx-auto p-6 sm:p-8 lg:p-12"> 
           
           {/* ROW 1: Service Authority (Long Description) */}
           <div class="mb-8">
@@ -90,7 +92,7 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
 
             <p>{location.data.brief_description}</p>
             
-            <p>{location.data.meta_description} Serving area code: <strong>{location.data.zip_codes.join(", ")}</strong></p>
+            <p>Serving area code: <strong>{location.data.zip_codes.join(", ")}</strong></p>
 
             <p><a href={`/${location.slug}`}>{location.data.city} {location.data.state}</a></p>
               

@@ -11,6 +11,7 @@ const locations = defineCollection({
     zip_codes: z.array(z.string()).optional(),
     meta_title: z.string().optional(),
     meta_description: z.string().optional(),
+    brief_description: z.string().optional(),
   })
 });
 

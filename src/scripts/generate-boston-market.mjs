@@ -153,32 +153,29 @@ const locationsToGenerate = [
 ];
 
 // ----------------------------------------------------
-// STEP 2: AI PROMPT TEMPLATE (Now requests two distinct content pieces)
+// STEP 2: AI PROMPT TEMPLATE (Structured for Authority)
 // ----------------------------------------------------
 const systemInstruction = `
-You are an expert SEO Content Architect. Your task is to generate two distinct, high-quality Markdown content pieces for a personal trainer matching service in a specific location:
-1.  **brief_description:** A concise, 30-word summary used on coupled pages.
-2.  **full_body_content:** A long, detailed, hyper-local article (min 220 words, maximum 300 words) for the location pillar page.
+You are an expert SEO Content Architect. Your task is to generate four distinct content segments for a personal trainer matching service in a specific location.
 
-Output MUST be returned as a single JSON object with two keys: "brief_description" and "full_body_content".
-The content MUST be hyper-local, use the city's context, and reference local landmarks/fitness cultures.
+Output MUST be a single JSON object with the following four keys. All values must be in proper Markdown format:
+1.  **brief_description:** A concise, 60-80 word paragraph used for coupled pages. Must be highly focused on conversion.
+2.  **local_culture_segment:** A 250-350 word section detailing the city's unique fitness culture, major parks/landmarks, and seasonal challenges (e.g., Boston Marathon, historic areas). Must use H2 and H3 headings.
+3.  **training_environment_segment:** A 300-400 word section covering local gym types, private training options, and popular outdoor workout spots (e.g., Equinox, Charles River Esplanade). Must use H2 and H3 headings.
+4.  **specialized_programs_segment:** A 200-250 word section listing specialized training programs for the local demographic (e.g., corporate professionals, students, affluent families). Must use H2 and H3 headings.
 
-// 🔥 CRITICAL FIX: Ensure no H1 tags are created in the body content.
-// All section headings within the content must use H2 (##) or H3 (###).
-The output content MUST NOT start with a single '#' (H1 tag).
-
-Use Markdown formatting (H2 and H3 headings, paragraphs, bolding, lists) in the body content.
+Total word count for the three body segments (2, 3, and 4) must exceed 750 words.
+All content must be hyper-local and grammatically perfect. Do NOT use any H1 tags (#) in the output.
 `;
 
-// This function calls the Gemini API to get the unique content
+// This function calls the Gemini API to get the unique structured content
 async function generateUniqueContent(location) {
-    const locationType = location.type === 'major_city' ? 'Boston' : (location.type === 'suburb' ? 'suburb' : 'neighborhood');
+    const locationType = location.type === 'major_city' ? 'Major City' : (location.type === 'suburb' ? 'Affluent Suburb' : 'Historic Neighborhood');
     
     const userQuery = `
-    Generate a concise 30-word brief description and a 250-word detailed article for ${location.city}, ${location.state}. 
-    Focus the brief description on high-intent keywords for fitness coaching/personal training. 
-    Focus the detailed article on unique local landmarks and recognized fitness cultures (e.g., Boston Common, hockey, football, yoga).
-    The final output must be a single JSON object with keys: "brief_description" and "full_body_content".
+    Generate the structured content for the ${locationType} of ${location.city}, ${location.state}. 
+    Focus the content on the specific demographic and lifestyle of this ${locationType}.
+    The final output must be ONLY the required JSON object.
     `;
 
     const payload = {
@@ -200,15 +197,11 @@ async function generateUniqueContent(location) {
         
         const result = await response.json();
         
-        // CRITICAL: Parse the AI's JSON output
+        // CRITICAL: Clean the JSON string before parsing
         let jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text.trim();
-        
-        // This removes the Markdown code fences (```json or ```) and trims whitespace
         jsonText = jsonText.replace(/```json|```/g, '').trim(); 
         
-        const content = JSON.parse(jsonText); 
-        
-        return content; // Returns { brief_description: '...', full_body_content: '...' }
+        return JSON.parse(jsonText); 
 
     } catch (error) {
         console.error(`Fetch/Parsing Error for ${location.city}:`, error.message);
@@ -217,26 +210,22 @@ async function generateUniqueContent(location) {
 }
 
 // ----------------------------------------------------
-// STEP 3: FILE WRITING LOGIC (Updated to use new fields)
+// STEP 3: FILE WRITING LOGIC (Updated to use all sections)
 // ----------------------------------------------------
 async function generateFiles() {
-    if (API_KEY === "") {
-        console.error("\nFATAL ERROR: Please set your Gemini API Key in the script before running.\n");
-        return;
-    }
-    
-    // ... (Directory setup logic remains here) ...
+    // ... (API Key and directory setup logic remains) ...
     await fs.mkdir(OUTPUT_DIR, { recursive: true });
 
     console.log(`\nStarting generation of ${locationsToGenerate.length} Boston market files...`);
 
     for (const location of locationsToGenerate) {
-        process.stdout.write(`Generating content for ${location.city}, ${location.state}...`);
+        process.stdout.write(`Generating structured content for ${location.city}, ${location.state}...`);
         
-        // 💥 NEW: Generate both content pieces
         const generatedContent = await generateUniqueContent(location);
         
-        // 1. Construct the YAML Frontmatter (Added brief_description field)
+        // 1. Construct the YAML Frontmatter (Using brief_description)
+        const escapedBriefDescription = generatedContent.brief_description.replace(/"/g, '\\"');
+
         const frontmatter = `---
 city: "${location.city}"
 state: "${location.state}"
@@ -247,19 +236,25 @@ hero_image: "/assets/images/${location.slug}-hero.jpg"
 zip_codes: [${location.zip_codes.map(zc => `"${zc}"`).join(', ')}]
 meta_title: "${location.meta_title}"
 meta_description: "${location.meta_description}"
-brief_description: "${generatedContent.brief_description.replace(/"/g, '\\"')}" 
+brief_description: "${escapedBriefDescription}"
 ---`;
 
-        // 2. Combine Frontmatter and Body (Uses the long body content for the main file body)
-        const fileContent = frontmatter + '\n' + generatedContent.full_body_content;
+        // 2. Combine Body Sections for the Final Article (Full Pillar Content)
+        const fullBodyArticle = [
+            generatedContent.local_culture_segment,
+            generatedContent.training_environment_segment,
+            generatedContent.specialized_programs_segment,
+        ].join('\n\n---\n\n'); // Use horizontal rules or double newlines to separate sections
+
+        // 3. Write File
+        const fileContent = frontmatter + '\n' + fullBodyArticle;
         
-        // ... (File writing logic remains here) ...
         const filename = path.join(OUTPUT_DIR, `${location.slug}.md`);
 
         await fs.writeFile(filename, fileContent, 'utf-8');
         console.log(` ✅ Done. Written to ${filename}`);
     }
-    console.log('\n✨ Boston market generation complete! Commit new files to Git.\n');
+    console.log('\n✨ Structured content generation complete! Commit new files to Git.\n');
 }
 
 generateFiles();

@@ -36,6 +36,9 @@
         "meta_description": {
           "type": "string"
         },
+        "brief_description": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
