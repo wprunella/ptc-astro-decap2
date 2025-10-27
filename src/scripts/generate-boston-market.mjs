@@ -153,14 +153,21 @@ const locationsToGenerate = [
 ];
 
 // ----------------------------------------------------
-// STEP 2: AI PROMPT TEMPLATE (Single Prompt for Differentiation)
+// STEP 2: AI PROMPT TEMPLATE (Now requests two distinct content pieces)
 // ----------------------------------------------------
 const systemInstruction = `
-You are an expert SEO Content Architect specializing in hyper-local fitness content. Your task is to generate a unique, high-quality Markdown introduction for a personal trainer matching service.
+You are an expert SEO Content Architect. Your task is to generate two distinct, high-quality Markdown content pieces for a personal trainer matching service in a specific location:
+1.  **brief_description:** A concise, 30-word summary used on coupled pages.
+2.  **full_body_content:** A long, detailed, hyper-local article (min 220 words, maximum 300 words) for the location pillar page.
 
-The output MUST be a single, cohesive block of text (minimum 220 words, maximum 300 words).
-The content MUST be engaging, use Boston-specific language/tone, and clearly incorporate at least one famous local landmark (e.g., Boston Common, Freedom Trail) and one well-known local or national gym/studio (e.g., Equinox, Boston Sports Clubs) relevant to the given city/neighborhood to ensure hyper-local SEO relevance.
-Use Markdown formatting (headings, paragraphs, bolding, lists) in the body content.
+Output MUST be returned as a single JSON object with two keys: "brief_description" and "full_body_content".
+The content MUST be hyper-local, use the city's context, and reference local landmarks/fitness cultures.
+
+// 🔥 CRITICAL FIX: Ensure no H1 tags are created in the body content.
+// All section headings within the content must use H2 (##) or H3 (###).
+The output content MUST NOT start with a single '#' (H1 tag).
+
+Use Markdown formatting (H2 and H3 headings, paragraphs, bolding, lists) in the body content.
 `;
 
 // This function calls the Gemini API to get the unique content
@@ -168,13 +175,12 @@ async function generateUniqueContent(location) {
     const locationType = location.type === 'major_city' ? 'Boston' : (location.type === 'suburb' ? 'suburb' : 'neighborhood');
     
     const userQuery = `
-    Write a unique 250-word introduction for a personal trainer matching service in the ${locationType} of ${location.city}, ${location.state}. 
-    The page targets high-intent users looking for specialized fitness coaching. 
-    Content must be hyper-local and mention at least one specific Boston-area landmark/park and one recognized fitness center.
-    The final output should be ONLY the Markdown body content.
+    Generate a concise 30-word brief description and a 250-word detailed article for ${location.city}, ${location.state}. 
+    Focus the brief description on high-intent keywords for fitness coaching/personal training. 
+    Focus the detailed article on unique local landmarks and recognized fitness cultures (e.g., Boston Common, hockey, football, yoga).
+    The final output must be a single JSON object with keys: "brief_description" and "full_body_content".
     `;
 
-    // --- Gemini API Call Simulation/Structure ---
     const payload = {
         contents: [{ parts: [{ text: userQuery }] }],
         systemInstruction: { parts: [{ text: systemInstruction }] },
@@ -189,23 +195,29 @@ async function generateUniqueContent(location) {
         
         if (!response.ok) {
             console.error(`API Error for ${location.city}: ${response.statusText}`);
-            const errorBody = await response.text();
-            console.error(`Error Details: ${errorBody.substring(0, 200)}...`);
-            return ``;
+            return { brief_description: `ERROR: Failed to generate content for ${location.city}`, full_body_content: `Placeholder content due to API failure.` };
         }
         
         const result = await response.json();
-        return result.candidates?.[0]?.content?.parts?.[0]?.text || 
-               `# Error: Empty content generated for ${location.city}.`;
+        
+        // CRITICAL: Parse the AI's JSON output
+        let jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text.trim();
+        
+        // This removes the Markdown code fences (```json or ```) and trims whitespace
+        jsonText = jsonText.replace(/```json|```/g, '').trim(); 
+        
+        const content = JSON.parse(jsonText); 
+        
+        return content; // Returns { brief_description: '...', full_body_content: '...' }
 
     } catch (error) {
-        console.error(`Fetch Error for ${location.city}:`, error.message);
-        return ``;
+        console.error(`Fetch/Parsing Error for ${location.city}:`, error.message);
+        return { brief_description: `ERROR: Data generation failed for ${location.city}`, full_body_content: `Placeholder content due to processing error.` };
     }
 }
 
 // ----------------------------------------------------
-// STEP 3: FILE WRITING LOGIC (Unchanged, but complete)
+// STEP 3: FILE WRITING LOGIC (Updated to use new fields)
 // ----------------------------------------------------
 async function generateFiles() {
     if (API_KEY === "") {
@@ -213,6 +225,7 @@ async function generateFiles() {
         return;
     }
     
+    // ... (Directory setup logic remains here) ...
     await fs.mkdir(OUTPUT_DIR, { recursive: true });
 
     console.log(`\nStarting generation of ${locationsToGenerate.length} Boston market files...`);
@@ -220,10 +233,10 @@ async function generateFiles() {
     for (const location of locationsToGenerate) {
         process.stdout.write(`Generating content for ${location.city}, ${location.state}...`);
         
-        // Generate the unique content
-        const uniqueContentBody = await generateUniqueContent(location);
+        // 💥 NEW: Generate both content pieces
+        const generatedContent = await generateUniqueContent(location);
         
-        // 1. Construct the YAML Frontmatter
+        // 1. Construct the YAML Frontmatter (Added brief_description field)
         const frontmatter = `---
 city: "${location.city}"
 state: "${location.state}"
@@ -234,15 +247,15 @@ hero_image: "/assets/images/${location.slug}-hero.jpg"
 zip_codes: [${location.zip_codes.map(zc => `"${zc}"`).join(', ')}]
 meta_title: "${location.meta_title}"
 meta_description: "${location.meta_description}"
+brief_description: "${generatedContent.brief_description.replace(/"/g, '\\"')}" 
 ---`;
 
-        // 2. Combine Frontmatter and Body
-        const fileContent = frontmatter + '\n' + uniqueContentBody;
+        // 2. Combine Frontmatter and Body (Uses the long body content for the main file body)
+        const fileContent = frontmatter + '\n' + generatedContent.full_body_content;
         
-        // 3. Define Output Path
+        // ... (File writing logic remains here) ...
         const filename = path.join(OUTPUT_DIR, `${location.slug}.md`);
 
-        // 4. Write File
         await fs.writeFile(filename, fileContent, 'utf-8');
         console.log(` ✅ Done. Written to ${filename}`);
     }
