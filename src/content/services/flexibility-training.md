@@ -2,7 +2,7 @@
 name: "Flexibility Training"
 slug: "flexibility-training"
 tagline: "Improve your mobility, reduce joint pain, and enhance athletic performance with targeted flexibility coaching."
-hero_image: "/assets/images/flexibility-hero.jpg"
+hero_image: "/src/assets/images/flexibility-training-hero.jpg"
 meta_title: "Expert Flexibility Training and Mobility Programs"
 meta_description: "Access tailored programs focused on static, dynamic, and PNF stretching to unlock your body's full range of motion. Reduce pain and improve posture with personalized mobility coaching."
 ---

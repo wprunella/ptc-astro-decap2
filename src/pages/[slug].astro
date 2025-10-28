@@ -5,7 +5,7 @@ import HeaderNav from '../components/HeaderNav.astro';
 import FeaturedImage from '../components/FeaturedImage.astro';
 import LeadWebformCTA from '../components/LeadWebformCTA.astro';
 import SEO from '../components/SEO.astro';
-import Footer from '../components/Footer.astro'; 
+import Footer from '../components/Footer.astro';
 
 // --- 1. DYNAMIC ROUTING: Generate Paths for ALL Location and ALL Service Pillars ---
 export async function getStaticPaths() {
@@ -88,14 +88,14 @@ if (type === 'location') {
     <div class="container mx-auto px-4 md:px-6 py-12">
         <div class="max-w-6xl mx-auto p-6 sm:p-8 lg:p-12">
      
-         
             <!--
             <FeaturedImage 
-                src={entry.data.hero_image} 
+                src={entry.data.hero_image}
                 alt={pageTitle}
                 className="mb-10 w-full rounded-lg"
             />
             -->
+            
 
             <div class="prose prose-lg max-w-none mb-10">
                 <Content />
@@ -109,12 +109,12 @@ if (type === 'location') {
                 {type === 'location' && (
                     <div class="mt-12">
                         <h2 class="text-2xl font-bold mb-6 text-center">Available Services in {entry.data.city}</h2>
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="flex justify-center gap-4">
                             {majorServices.map((service) => (
                                 <a 
                                     // LINK: /location-slug/service-slug
                                     href={`/${entry.slug}/${service.slug}`} 
-                                    class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
+                                    class="px-8 bg-blue-900 text-white p-4 rounded-lg text-center hover:bg-blue-700 transition-colors font-semibold"
                                 >
                                     {service.data.name}
                                 </a>
@@ -148,9 +148,9 @@ if (type === 'location') {
                         {associatedNeighborhoods.length > 0 && (
                             <div class="mt-12">
                                 <h2 class="text-2xl font-bold mb-6 text-center">Popular Neighborhoods in {entry.data.city}</h2>
-                                <div class="grid md:grid-cols-4 lg:grid-cols-6 gap-3">
+                                <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {associatedNeighborhoods.map((n) => (
-                                        <a href={`/${n.slug}`} class="bg-blue-50 text-blue-700 p-3 rounded-lg text-center text-sm hover:bg-blue-100 transition-colors">
+                                        <a href={`/${n.slug}`} class="bg-blue-50 text-blue-700 p-3 rounded-lg text-center hover:bg-blue-100 transition-colors">
                                             {n.data.city}
                                         </a>
                                     ))}

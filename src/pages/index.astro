@@ -25,7 +25,7 @@ const majorServices = services.slice(0, 6);
   />
 
   <main class="min-h-screen">
-    <section class="min-h-screen bg-gradient-to-bl from-gray-600 to-gray-900 text-white py-24 md:py-32">
+    <section class="bg-gradient-to-tl from-gray-800 to-gray-900 text-white py-24 md:py-32">
       <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Find Your Perfect Personal Trainer</h1>
         <p class="text-lg md:text-xl mb-10 max-w-4xl mx-auto opacity-90">
@@ -39,8 +39,8 @@ const majorServices = services.slice(0, 6);
 
     <section id="services" class="py-20 bg-gray-50">
       <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-14">Our Specialized Services</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-14">Our Specialized Services</h2>
+        <div class="flex justify-center grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {majorServices.map((service) => (
             <a 
               href={`/${service.slug}`} 
@@ -56,29 +56,33 @@ const majorServices = services.slice(0, 6);
               </div>
               
               <div class="p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">{service.data.name}</h3>
+                <h3 class="text-2xl font-bold text-gray-700 hover:text-blue-700 mb-3">{service.data.name}</h3>
                 <p class="text-gray-600 mb-5 text-sm">{service.data.tagline}</p>
-                <span class="text-primary-600 font-bold flex items-center group-hover:text-primary-700 transition-colors">
-                  Learn More 
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <span class="text-primary-600 items-center group-hover:text-primary-700 transition-colors">
+                  Find {service.data.name} Coaches 
+                  <!--<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
+                  </svg>-->
                 </span>
               </div>
             </a>
           ))}
         </div>
         <div class="text-center mt-12">
-          <a href="/services-list" class="text-primary-600 font-semibold text-lg hover:text-primary-800 transition-colors border-b-2 border-primary-600/50 hover:border-primary-800/50 pb-1">
-            View All Services →
+
+          <!--
+          <a href="/services-list" class="bg-white text-primary-700 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-gray-200 transition-all duration-300 inline-block uppercase tracking-wide">
+            View All Services
           </a>
+          -->
+
         </div>
       </div>
     </section>
 
     <section class="bg-gray-100 py-20">
       <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-14">Find Trainers in Your City</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-14">Find Trainers in Your City</h2>
         <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {majorCities.map((location) => (
             <a 
@@ -91,8 +95,8 @@ const majorServices = services.slice(0, 6);
           ))}
         </div>
         <div class="text-center mt-12">
-          <a href="/locations" class="text-primary-600 font-semibold text-lg hover:text-primary-800 transition-colors border-b-2 border-primary-600/50 hover:border-primary-800/50 pb-1">
-            View All Locations →
+          <a href="/locations" class="bg-gray-500 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-gray-800 transition-all duration-300 inline-block uppercase tracking-wide">
+            View All Locations
           </a>
         </div>
       </div>

@@ -4,7 +4,7 @@ title: "The Ultimate Guide to Fat Loss and Strength Training: Building Muscle
 slug: fat-loss-using-strength-training
 publish_date: 2025-10-21T13:57:00.000-04:00
 author: warren
-featured_image: /images/oriental-bamboo-forest-daylight.jpg
+featured_image: /src/assets/images/oriental-bamboo-forest-daylight.jpg
 meta_title: Fat Loss & Strength Training Guide | Build Muscle, Burn Fat Effectively
 meta_description: Learn how to combine strength training with fat loss
   strategies to build muscle while burning fat. Science-backed methods for

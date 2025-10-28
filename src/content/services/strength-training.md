@@ -2,7 +2,7 @@
 name: "Strength Training"
 slug: "strength-training"
 tagline: "Build muscle, boost metabolism, and transform your body with expert resistance coaching."
-hero_image: "/assets/images/strength-training-hero.jpg"
+hero_image: "/src/assets/images/strength-training-hero.jpg"
 meta_title: "Personalized Strength Training Programs"
 meta_description: "Our comprehensive strength training programs focus on proper form, progressive overload, and periodization to deliver sustainable, safe results for all ages and fitness levels."
 ---
