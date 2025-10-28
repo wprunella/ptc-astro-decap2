@@ -150,5 +150,5 @@ brief_description: "${escapedBriefDescription}"
 }
 
 // Execute the generation process
-// generateFiles(); 
+generateFiles(); 
 // NOTE: Execute this function manually after filling out the API key.
