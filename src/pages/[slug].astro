@@ -126,15 +126,15 @@ if (type === 'location') {
                 {/* --- B. Location Pillar Links (Only displays on Service Pages) --- */}
                 {type === 'service' && allLocations.filter(loc => loc.data.type === 'major_city').length > 0 && (
                     <div class="mt-12">
-                        <h2 class="text-2xl font-bold mb-6 text-center">Find {entry.data.name} in These Major Cities</h2>
+                        <h2 class="text-2xl font-bold mb-6 text-center text-blue-900">Find {entry.data.name} in These Major Cities</h2>
                         <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {allLocations.filter(loc => loc.data.type === 'major_city').map((city) => (
                                 <a 
                                     // LINK: /location-slug/service-slug (Coupled Page)
                                     href={`/${city.slug}/${entry.slug}`} 
-                                    class="bg-primary-50 text-primary-700 p-4 rounded-lg text-center hover:bg-primary-100 transition-colors font-semibold"
+                                    class="bg-white rounded-lg shadow-md p-5 text-center hover:shadow-lg hover:shadow-primary-300 transition-shadow border border-primary-100"
                                 >
-                                    {city.data.city}, {city.data.state}
+                                    {city.data.city} {city.data.state}
                                 </a>
                             ))}
                         </div>

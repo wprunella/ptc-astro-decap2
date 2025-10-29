@@ -36,28 +36,30 @@ const sortedMarketHubs = Object.values(marketHubs).sort((a, b) =>
 );
 ---
 
-<Layout title="All Personal Training Locations">
+<Layout title="Personal Training Locations">
   <HeaderNav />
   <SEO 
-    title="All Service Areas & Locations | Find a Trainer Near You"
+    title="Service Areas & Locations | Find a Trainer Near You"
     description="Browse our complete list of cities, suburbs, and neighborhoods served by certified personal trainers."
     canonical="/locations-list/"
   />
 
   <main class="min-h-screen bg-gray-50">
+  <h1 class="bg-gray-900 p-40 text-4xl md:text-5xl font-bold text-center text-white">Locations</h1>
     <div class="container mx-auto px-4 py-12 max-w-7xl">
-      <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">All Areas We Serve</h1>
+      
       
       {/* 1. Major Metropolitan Hubs (List remains the same) */}
       <section class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-700 mb-6 border-b pb-2">Major Metropolitan Hubs</h2>
+        <h2 class="text-3xl font-bold text-gray-600 border-b border-gray-300 text-center mb-8 p-4">Major Metropolitan Hubs</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {majorCities.map((loc) => (
             <a 
               href={`/${loc.slug}`} 
               class="bg-white rounded-lg shadow-md p-5 text-center hover:shadow-lg hover:shadow-primary-300 transition-shadow border border-primary-100"
             >
-              <h3 class="text-xl font-bold text-primary-800">{loc.data.city}, {loc.data.state}</h3>
+              <h3 class="text-xl font-bold text-primary-800">{loc.data.city}</h3>
+               <p class="text-sm text-gray-500">{loc.data.state}</p>
               
             </a>
           ))}
@@ -66,27 +68,28 @@ const sortedMarketHubs = Object.values(marketHubs).sort((a, b) =>
 
       {/* 2. Structured Suburbs & Neighborhoods List (NEW STRUCTURE) */}
       <section>
-        <h2 class="text-3xl font-bold text-gray-700 mb-8 border-b pb-2">Suburbs & Neighborhoods by Market</h2>
+        <h2 class="text-3xl font-bold text-gray-600 border-b border-gray-300 text-center mb-8 p-4">Suburbs & Neighborhoods</h2>
         
         <div class="space-y-12">
           {sortedMarketHubs.map((market) => (
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                 
                 {/* Hub Heading */}
-                <h3 class="text-2xl font-extrabold text-gray-900 mb-4 border-b pb-2">
-                    {market.hub.data.city} Market ({market.hub.data.state})
+                <h3 class="text-2xl font-extrabold text-blue-900 mb-4 pb-2 uppercase text-center">
+                    {market.hub.data.city} {market.hub.data.state}
                 </h3>
                 
                 {/* Children List */}
-                <div class="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {market.children.sort((a, b) => a.data.city.localeCompare(b.data.city)).map((loc) => (
                     <a 
-                      href={`/${loc.slug}`} 
-                      class={`rounded-lg p-3 text-center text-sm transition-colors 
-                        ${loc.data.type === 'neighborhood' ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                    >
-                      {loc.data.city}
-                    </a>
+              href={`/${loc.slug}`} 
+              class="bg-white rounded-lg shadow-md p-5 text-center hover:shadow-lg hover:shadow-primary-300 transition-shadow border border-primary-100"
+            >
+              <p class="text-l font-bold text-primary-800">{loc.data.city}</p>
+               <p class="text-sm text-gray-500">{loc.data.state}</p>
+              
+            </a>
                   ))}
                 </div>
             </div>

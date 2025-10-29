@@ -8,7 +8,7 @@ import Footer from '../components/Footer.astro';
 const allServices = await getCollection('services');
 ---
 
-<Layout title="All Fitness Programs | Personal Trainer City">
+<Layout title="Personal Training Fitness Programs">
   <HeaderNav />
   <SEO 
     title="Our Complete List of Personal Training Services"
@@ -17,19 +17,18 @@ const allServices = await getCollection('services');
   />
 
   <main class="min-h-screen bg-gray-50">
-    <div class="container mx-auto px-4 py-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">All Training Programs</h1>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+  <h1 class="bg-gray-900 p-40 text-4xl md:text-5xl font-bold text-center text-white">Personal Training Programs</h1>
+    <div class="container mx-auto px-4 py-12">   
+      <div class="flex align-center justify-center gap-8 max-w-6xl mx-auto">
         {allServices.map((service) => (
           <a 
             href={`/${service.slug}`} 
-            class="bg-white rounded-lg shadow-md overflow-hidden p-6 hover:shadow-lg transition-shadow border border-gray-100 block"
+            class="basis-1/3 justify-center bg-white rounded-lg shadow-md overflow-hidden p-6 hover:shadow-lg transition-shadow border border-gray-300"
           >
             <h2 class="text-2xl font-bold text-primary-800 mb-3">{service.data.name}</h2>
             <p class="text-gray-600 mb-4">{service.data.tagline}</p>
-            <div class="text-right text-primary-600 font-semibold hover:text-primary-700 transition-colors">
-              View Program Details →
+            <div class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+              Program Details
             </div>
           </a>
         ))}

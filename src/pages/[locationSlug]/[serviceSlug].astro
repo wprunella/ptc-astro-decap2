@@ -92,7 +92,7 @@ const pageDescription = `Find certified ${service.data.name.toLowerCase()} perso
 
             <p>{location.data.brief_description}</p>
             
-            <p>Serving area code: <strong>{location.data.zip_codes.join(", ")}</strong></p>
+            <p>Serving these {location.data.city} zip codes: <strong>{location.data.zip_codes.join(", ")}</strong></p>
 
             <p><a href={`/${location.slug}`}>{location.data.city} {location.data.state}</a></p>
               
