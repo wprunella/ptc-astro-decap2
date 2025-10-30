@@ -48,7 +48,7 @@ const sortedMarketHubs = Object.values(marketHubs).sort((a, b) =>
    <main class="w-full bg-gray-50">
   <section class="bg-gray-900 text-white text-center py-24 md:py-32">
     <div class="container mx-auto px-4 text-center"> 
-  <h1 class="text-4xl md:text-5xl font-bold mb-8">Locations</h1>
+  <h1 class="text-4xl md:text-5xl font-bold pb-12">Locations</h1>
   <a href="#leadform" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-gray-400 transition-all duration-300 inline-block uppercase tracking-wide">
           Find My Trainer
         </a>
@@ -59,7 +59,7 @@ const sortedMarketHubs = Object.values(marketHubs).sort((a, b) =>
       
       {/* 1. Major Metropolitan Hubs (List remains the same) */}
       <section class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-600 border-b border-gray-300 text-center mb-8 p-4">Major Metropolitan Hubs</h2>
+        <h2 class="text-3xl font-bold text-primary-900 border-b border-gray-300 text-center mb-8 p-4">Major Metropolitan Hubs</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {majorCities.map((loc) => (
             <a 
@@ -76,7 +76,7 @@ const sortedMarketHubs = Object.values(marketHubs).sort((a, b) =>
 
       {/* 2. Structured Suburbs & Neighborhoods List (NEW STRUCTURE) */}
       <section>
-        <h2 class="text-3xl font-bold text-gray-600 border-b border-gray-300 text-center mb-8 p-4">Suburbs & Neighborhoods</h2>
+        <h2 class="text-3xl font-bold text-primary-900 border-b border-gray-300 text-center mb-8 p-4">Suburbs & Neighborhoods</h2>
         
         <div class="space-y-12">
           {sortedMarketHubs.map((market) => (
