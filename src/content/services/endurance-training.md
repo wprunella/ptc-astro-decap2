@@ -6,7 +6,7 @@ hero_image: "/assets/images/endurance-coaching-hero.jpg"
 meta_title: "Expert Running & Endurance Coaching | Marathon, Triathlon & Ultra Training"
 meta_description: "Access personalized endurance training plans for all levels. Our certified coaches provide structured periodization, running form analysis, and strength integration to maximize performance and prevent running injuries."
 ---
-## 🏃‍♂️ Conquer the Distance: Personalized Running and Endurance Coaching
+## Conquer the Distance: Personalized Running and Endurance Coaching
 
 Endurance is the ultimate test of physical and mental resilience. Whether your goal is running your first **5k, completing a marathon**, finishing a triathlon, or tackling an ultra-distance event, success requires a strategic, personalized plan that goes far beyond simply logging miles. Our **Certified Running and Endurance Coaches** specialize in the science of sustained performance.
 

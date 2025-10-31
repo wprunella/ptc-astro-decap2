@@ -6,7 +6,7 @@ hero_image: "/assets/images/senior-fitness-hero.jpg"
 meta_title: "Certified Senior Fitness and Mobility Training | Personal Trainers for Older Adults"
 meta_description: "Find an expert trainer specializing in safe, effective fitness programs for older adults. Focus on fall prevention, core strength, joint mobility, and functional movement to stay independent."
 ---
-## 🌟 Empowering Health and Independence for Older Adults
+## Empowering Health and Independence for Older Adults
 
 Aging should never mean sacrificing your independence or the activities you love. Our **certified senior fitness personal trainers** specialize in creating safe, effective, and encouraging exercise programs designed specifically for the unique physiological needs of older adults. This isn't just about general fitness; it’s about **fall prevention, improved balance, joint health, and sustained functional mobility.**
 

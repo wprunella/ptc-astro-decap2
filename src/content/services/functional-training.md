@@ -6,7 +6,7 @@ hero_image: "/assets/images/functional-training-hero.jpg"
 meta_title: "Expert Functional Training & Movement Coaching | Functional Fitness"
 meta_description: "Access certified functional training to improve core stability, balance, and agility. Our programs build usable strength for lifting, bending, and moving without pain or injury."
 ---
-## 🏋️ Train for Life, Not Just the Gym: Functional Fitness
+## Train for Life, Not Just the Gym: Functional Fitness
 
 Functional training is the cornerstone of intelligent fitness. It is defined as training the body for the activities it performs in **real life**—whether that's lifting a heavy suitcase, playing with your kids, or simply getting up off the floor safely. This approach moves beyond traditional bodybuilding machines to focus on **compound, multi-joint movements** that build strength and coordination across entire muscle chains.
 

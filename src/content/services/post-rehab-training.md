@@ -6,7 +6,7 @@ hero_image: "/assets/images/post-rehab-hero.jpg"
 meta_title: "Certified Post-Rehabilitation Personal Training | Safe Injury Recovery"
 meta_description: "Find a specialist personal trainer for safe and effective injury recovery. Our post-rehab programs focus on stability, strength, and confidence after physical therapy or surgery."
 ---
-## 🩹 Transition Safely from Rehab to Full Fitness
+## Transition Safely from Rehab to Full Fitness
 
 Completing a course of physical therapy is a major milestone, but it is often just the beginning of the journey back to full activity. The transition from the clinic back to a regular gym routine or sports activity is where many people risk **re-injury** or plateau in their recovery. Our **certified post-rehabilitation personal trainers** specialize in safely and effectively bridging this crucial gap.
 

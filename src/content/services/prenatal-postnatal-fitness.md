@@ -6,7 +6,7 @@ hero_image: "/assets/images/prenatal-hero.jpg"
 meta_title: "Certified Prenatal & Postnatal Fitness Training | Diastasis Recti Recovery"
 meta_description: "Access tailored, safe fitness programs designed for every stage of pregnancy and postpartum recovery. Our specialists focus on core integrity, pelvic floor health, and safe exercise modification."
 ---
-## 🤰 Strength, Stability, and Confidence for Motherhood
+## Strength, Stability, and Confidence for Motherhood
 
 Pregnancy and childbirth bring the most profound physical changes a woman's body will ever experience. Maintaining an appropriate fitness routine during this time is not just safe—it is highly beneficial for both mother and baby. Our **certified Pre/Post-Natal Fitness Specialists** provide the expert guidance necessary to navigate these stages safely, ensuring you strengthen your body for the rigors of labor and recover efficiently afterward.
 

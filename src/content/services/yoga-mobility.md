@@ -6,7 +6,7 @@ hero_image: "/assets/images/yoga-mobility-hero.jpg"
 meta_title: "Expert Yoga & Functional Mobility Training | Flexibility and Joint Health"
 meta_description: "Access certified private yoga and mobility training to reduce joint stiffness, correct posture, improve balance, and strengthen the mind-body connection."
 ---
-## 🧘‍♀️ Unlock Your Full Range of Motion with Yoga & Mobility
+## Unlock Your Full Range of Motion with Yoga & Mobility
 
 Many fitness programs target strength or cardio, but often neglect the foundation of all healthy movement: **mobility and flexibility**. Our specialized **Yoga and Mobility Coaches** blend the ancient principles of yoga with modern functional movement science to create a practice that makes you feel strong, resilient, and centered in your daily life.
 

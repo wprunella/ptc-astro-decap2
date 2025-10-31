@@ -6,7 +6,7 @@ hero_image: "/assets/images/small-group-hero.jpg"
 meta_title: "Expert Small Group Personal Training | Affordable Semi-Private Fitness"
 meta_description: "Find high-quality small group training near you. Get customized workouts, expert guidance, and community support in sessions limited to 2-6 participants."
 ---
-## 🤝 Get Personalized Results in a Powerful Group Setting
+## Get Personalized Results in a Powerful Group Setting
 
 **Small Group Training (SGT)** offers the perfect balance between the high attention of one-on-one coaching and the motivating energy of a class setting. This model is designed for individuals who thrive on community support but still require the expert, personalized instruction only a certified personal trainer can provide.
 

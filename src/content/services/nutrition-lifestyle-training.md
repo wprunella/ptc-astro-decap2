@@ -6,7 +6,7 @@ hero_image: "/assets/images/nutrition-coach-hero.jpg"
 meta_title: "Certified Nutrition and Lifestyle Coaching | Sustainable Health Habits"
 meta_description: "Access expert coaching focused on personalized diet plans, habit formation, stress management, and improved sleep quality for long-term health transformation."
 ---
-## 🍽️ Transform Your Health with Sustainable Nutrition and Lifestyle Habits
+## Transform Your Health with Sustainable Nutrition and Lifestyle Habits
 
 True health and fitness are built in the kitchen and in your daily routines, not just the gym. Our **Certified Nutrition and Lifestyle Coaches** move beyond restrictive dieting and grueling workout plans. We specialize in empowering you to create sustainable, positive habits that fit your real life, leading to permanent results and renewed energy.
 
