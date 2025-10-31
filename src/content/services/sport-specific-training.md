@@ -3,7 +3,7 @@ name: "Sport-Specific Training"
 slug: "sport-conditioning"
 tagline: "Maximize your athletic potential, increase power, and prevent injury with elite sport-specific training programs."
 hero_image: "/assets/images/sport-conditioning-hero.jpg"
-meta_title: "Elite Sport-Specific Training & Conditioning | Certified Performance Coaches"
+meta_title: "Elite Sport-Specific Training & Conditioning"
 meta_description: "Access tailored, expert sport-specific training for athletes of all levels. Increase speed, agility, power, and endurance with personalized conditioning programs for any sport."
 ---
 ## Elevate Your Game with Elite Sport-Specific Training

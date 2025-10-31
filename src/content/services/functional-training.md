@@ -3,7 +3,7 @@ name: "Functional Training"
 slug: "functional-training"
 tagline: "Build real-world strength, improve stability, and reduce pain by training the movements of daily life."
 hero_image: "/assets/images/functional-training-hero.jpg"
-meta_title: "Expert Functional Training & Movement Coaching | Functional Fitness"
+meta_title: "Expert Functional Training & Movement Coaching"
 meta_description: "Access certified functional training to improve core stability, balance, and agility. Our programs build usable strength for lifting, bending, and moving without pain or injury."
 ---
 ## Train for Life, Not Just the Gym: Functional Fitness

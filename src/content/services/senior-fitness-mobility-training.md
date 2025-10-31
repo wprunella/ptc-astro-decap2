@@ -3,7 +3,7 @@ name: "Senior Fitness and Mobility Training"
 slug: "senior-fitness-mobility"
 tagline: "Regain balance, boost strength, and maintain independence with specialized senior fitness programs."
 hero_image: "/assets/images/senior-fitness-hero.jpg"
-meta_title: "Certified Senior Fitness and Mobility Training | Personal Trainers for Older Adults"
+meta_title: "Certified Senior Fitness and Mobility Training"
 meta_description: "Find an expert trainer specializing in safe, effective fitness programs for older adults. Focus on fall prevention, core strength, joint mobility, and functional movement to stay independent."
 ---
 ## Empowering Health and Independence for Older Adults

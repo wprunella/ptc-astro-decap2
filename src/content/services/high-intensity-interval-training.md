@@ -3,7 +3,7 @@ name: "High-Intensity Interval Training (HIIT)"
 slug: "high-intensity-interval-training-hiit"
 tagline: "Maximize fat loss and cardiovascular health in minimum time with scientifically-backed HIIT protocols."
 hero_image: "/assets/images/hiit-hero.jpg"
-meta_title: "The Science of HIIT: High-Intensity Interval Training Workouts"
+meta_title: "HIIT: High-Intensity Interval Training Workouts"
 meta_description: "Learn about the EPOC 'Afterburn Effect' and how our certified trainers design safe, effective HIIT programs for rapid fat loss and superior conditioning."
 ---
 ## The Fastest Path to Maximum Fitness: High-Intensity Interval Training

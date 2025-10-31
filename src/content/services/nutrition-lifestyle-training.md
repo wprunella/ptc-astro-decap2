@@ -3,7 +3,7 @@ name: "Nutrition and Lifestyle Coaching"
 slug: "nutrition-lifestyle-coaching"
 tagline: "Achieve lasting health, sustainable weight loss, and renewed energy with personalized nutrition and habit coaching."
 hero_image: "/assets/images/nutrition-coach-hero.jpg"
-meta_title: "Certified Nutrition and Lifestyle Coaching | Sustainable Health Habits"
+meta_title: "Certified Nutrition and Lifestyle Coaching"
 meta_description: "Access expert coaching focused on personalized diet plans, habit formation, stress management, and improved sleep quality for long-term health transformation."
 ---
 ## Transform Your Health with Sustainable Nutrition and Lifestyle Habits

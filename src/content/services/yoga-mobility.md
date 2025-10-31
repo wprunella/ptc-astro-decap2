@@ -3,7 +3,7 @@ name: "Yoga & Mobility"
 slug: "yoga-mobility"
 tagline: "Improve flexibility, gain functional mobility, and reduce stress with personalized yoga and movement coaching."
 hero_image: "/assets/images/yoga-mobility-hero.jpg"
-meta_title: "Expert Yoga & Functional Mobility Training | Flexibility and Joint Health"
+meta_title: "Expert Yoga & Functional Mobility Training"
 meta_description: "Access certified private yoga and mobility training to reduce joint stiffness, correct posture, improve balance, and strengthen the mind-body connection."
 ---
 ## Unlock Your Full Range of Motion with Yoga & Mobility

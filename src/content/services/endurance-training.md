@@ -3,7 +3,7 @@ name: "Running & Endurance Coaching"
 slug: "endurance-coaching"
 tagline: "Achieve your next PR, run injury-free, and build cardiovascular endurance with a certified coach."
 hero_image: "/assets/images/endurance-coaching-hero.jpg"
-meta_title: "Expert Running & Endurance Coaching | Marathon, Triathlon & Ultra Training"
+meta_title: "Expert Running & Endurance Coaching"
 meta_description: "Access personalized endurance training plans for all levels. Our certified coaches provide structured periodization, running form analysis, and strength integration to maximize performance and prevent running injuries."
 ---
 ## Conquer the Distance: Personalized Running and Endurance Coaching

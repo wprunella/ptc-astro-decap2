@@ -3,7 +3,7 @@ name: "Post-Rehabilitation Training"
 slug: "post-rehabilitation-training"
 tagline: "Bridge the gap between physical therapy and full function with a certified post-rehab personal trainer."
 hero_image: "/assets/images/post-rehab-hero.jpg"
-meta_title: "Certified Post-Rehabilitation Personal Training | Safe Injury Recovery"
+meta_title: "Certified Post-Rehabilitation & Safe Injury Recovery"
 meta_description: "Find a specialist personal trainer for safe and effective injury recovery. Our post-rehab programs focus on stability, strength, and confidence after physical therapy or surgery."
 ---
 ## Transition Safely from Rehab to Full Fitness

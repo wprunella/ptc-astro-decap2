@@ -3,7 +3,7 @@ name: "Small Group Fitness Training"
 slug: "small-group-training"
 tagline: "Experience the personalized coaching of a trainer at a fraction of the cost, in a supportive group setting."
 hero_image: "/assets/images/small-group-hero.jpg"
-meta_title: "Expert Small Group Personal Training | Affordable Semi-Private Fitness"
+meta_title: "Expert Small Group Personal Training"
 meta_description: "Find high-quality small group training near you. Get customized workouts, expert guidance, and community support in sessions limited to 2-6 participants."
 ---
 ## Get Personalized Results in a Powerful Group Setting

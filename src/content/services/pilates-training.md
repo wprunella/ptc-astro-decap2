@@ -3,7 +3,7 @@ name: "Pilates (Reformer & Mat)"
 slug: "pilates-reformer"
 tagline: "Unleash deep core strength, transform your posture, and achieve long, lean muscle with personalized Pilates training."
 hero_image: "/assets/images/pilates-reformer-hero.jpg"
-meta_title: "Expert Pilates Reformer & Mat Training | Core Strength and Posture"
+meta_title: "Expert Pilates Reformer & Mat Training"
 meta_description: "Find certified Pilates instructors specializing in Reformer equipment and Mat work. Achieve superior core stability, flexibility, injury recovery, and mind-body connection."
 ---
 ## The Ultimate Core Workout: Specialized Pilates Reformer Training

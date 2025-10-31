@@ -3,7 +3,7 @@ name: "Pre/Post-Natal Fitness Training"
 slug: "prenatal-postnatal-fitness"
 tagline: "Empower your body for pregnancy, prepare for labor, and recover safely with specialized maternal fitness coaches."
 hero_image: "/assets/images/prenatal-hero.jpg"
-meta_title: "Certified Prenatal & Postnatal Fitness Training | Diastasis Recti Recovery"
+meta_title: "Certified Prenatal & Postnatal Fitness Training"
 meta_description: "Access tailored, safe fitness programs designed for every stage of pregnancy and postpartum recovery. Our specialists focus on core integrity, pelvic floor health, and safe exercise modification."
 ---
 ## Strength, Stability, and Confidence for Motherhood
